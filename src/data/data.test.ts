@@ -1,0 +1,67 @@
+import { describe, expect, it } from 'vitest'
+import { filterProjects, getProjectBySlug, parseProjectFilter, projects } from './projects'
+import { journey } from './journey'
+import { person, pendingValidation, socialLinks } from '@/config/site'
+
+describe('dados dos projetos', () => {
+  it('tem ids e slugs únicos', () => {
+    expect(new Set(projects.map((p) => p.id)).size).toBe(projects.length)
+    expect(new Set(projects.map((p) => p.slug)).size).toBe(projects.length)
+  })
+
+  it('expõe as quatro rotas de detalhes esperadas', () => {
+    for (const slug of ['game-library', 'personal-agenda', 'rpg-isekai', 'engineering-lab']) {
+      expect(getProjectBySlug(slug)).toBeDefined()
+    }
+    expect(getProjectBySlug('nao-existe')).toBeUndefined()
+  })
+
+  it('Game Library aponta para o repositório oficial e não cita MySQL', () => {
+    const game = getProjectBySlug('game-library')!
+    expect(game.github).toBe('https://github.com/Ashkor7/biblioteca-jogos')
+    expect(game.tech).toContain('PostgreSQL')
+    expect(JSON.stringify(game)).not.toMatch(/mysql/i)
+  })
+
+  it('RPG Isekai usa Godot/GDScript, não Python/C', () => {
+    const rpg = getProjectBySlug('rpg-isekai')!
+    expect(rpg.tech).toEqual(expect.arrayContaining(['Godot 4', 'GDScript']))
+    expect(rpg.tech).not.toContain('Python')
+    expect(rpg.tech).not.toContain('C')
+  })
+
+  it('nenhum link é genérico (página inicial do GitHub/LinkedIn)', () => {
+    const generic = /^https:\/\/(www\.)?(github|linkedin)\.com\/?$/
+    for (const p of projects) {
+      if (p.github) expect(p.github).not.toMatch(generic)
+      if (p.demo) expect(p.demo).not.toMatch(generic)
+    }
+    for (const l of socialLinks) expect(l.href).not.toMatch(generic)
+  })
+
+  it('não publica e-mail de exemplo', () => {
+    expect(person.email ?? '').not.toMatch(/exemplo|example/i)
+    expect(pendingValidation.some((p) => p.includes('E-mail'))).toBe(person.email === null)
+  })
+
+  it('projetos sem código não aparecem como concluídos', () => {
+    expect(getProjectBySlug('personal-agenda')!.status).toBe('Planned')
+    expect(getProjectBySlug('engineering-lab')!.status).toBe('Concept')
+    for (const p of projects.filter((x) => x.status === 'Planned' || x.status === 'Concept')) {
+      expect(p.features.every((f) => f.state === 'planned')).toBe(true)
+    }
+  })
+
+  it('filtra por categoria e interpreta o filtro da URL', () => {
+    expect(filterProjects(projects, 'All')).toHaveLength(projects.length)
+    expect(filterProjects(projects, 'Automation').map((p) => p.slug)).toEqual(['engineering-lab'])
+    expect(parseProjectFilter('software')).toBe('Software')
+    expect(parseProjectFilter('ENGINEERING')).toBe('Engineering')
+    expect(parseProjectFilter('xyz')).toBe('All')
+    expect(parseProjectFilter(null)).toBe('All')
+  })
+
+  it('timeline só tem eventos realizados ou planejados', () => {
+    expect(journey.every((e) => e.status === 'done' || e.status === 'planned')).toBe(true)
+  })
+})
