@@ -83,8 +83,8 @@ Diferenças visuais intencionais:
 
 ## Limitações conhecidas
 
-- O envio real do formulário não foi testado ponta a ponta: depende de conta no Resend e
-  de deploy na Vercel. A integração tem testes unitários com `fetch` simulado.
+- O envio real do formulário foi confirmado manualmente no deploy da Vercel (08/11/2026);
+  os testes automatizados usam `fetch` simulado e o E2E remoto não envia e-mail.
 - O limite de tentativas por IP é em memória (por instância serverless); para algo
   robusto, use Upstash/Redis ou o firewall da Vercel.
-- O LinkedIn não pôde ser validado automaticamente.
+- O LinkedIn foi confirmado manualmente (o site bloqueia verificação automatizada).

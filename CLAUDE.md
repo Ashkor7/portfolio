@@ -62,7 +62,7 @@ Ver `docs/ARQUITETURA.md`. Resumo: conteúdo em `src/data` + `src/config`; seç�
 - GitHub: <https://github.com/Ashkor7>
 - Game Library: <https://github.com/Ashkor7/biblioteca-jogos> (React, Express, PostgreSQL, Prisma — **não** MySQL)
 - RPG Isekai: repositório privado `Ashkor7/rpg-isekai` (Godot 4.7.2, GDScript, marco M1)
-- LinkedIn (pendente de validação): <https://www.linkedin.com/in/leonardo-ribeiro-401b023a9/>
+- LinkedIn (confirmado manualmente): <https://www.linkedin.com/in/leonardo-ribeiro-401b023a9/>
 
 ## Critérios de teste
 

@@ -44,12 +44,11 @@ export const socialLinks: SocialLink[] = [
     id: 'linkedin',
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/leonardo-ribeiro-401b023a9/',
-    // O LinkedIn bloqueia verificação automatizada (HTTP 999 / authwall) e já
-    // retornou 404 antes. Confirme abrindo o link logado antes de publicar.
-    verified: false,
+    // Confirmado manualmente pelo dono do perfil em 08/11/2026 (o LinkedIn bloqueia
+    // verificação automatizada).
+    verified: true,
     showInHero: true,
     showInContact: true,
-    note: 'Não confirmado automaticamente (LinkedIn exige login). Validar manualmente.',
   },
   {
     id: 'instagram',

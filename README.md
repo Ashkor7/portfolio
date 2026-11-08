@@ -108,12 +108,9 @@ Netlify/Cloudflare. Configure _fallback_ de SPA para `index.html`.
 
 ## Antes de publicar — pendências
 
-- [ ] **LinkedIn**: confirmar que `linkedin.com/in/leonardo-ribeiro-401b023a9` abre o
-      perfil correto (não foi possível validar automaticamente). Depois, marque
-      `verified: true` em `src/config/site.ts`.
-- [ ] **E-mail de contato**: definir `person.email` em `src/config/site.ts` (opcional)
-      e `CONTACT_TO_EMAIL` na Vercel.
-- [ ] **Resend**: criar conta, verificar o domínio/remetente e configurar as variáveis.
+- [x] **LinkedIn**: perfil confirmado manualmente em 08/11/2026.
+- [x] **Envio do formulário**: Resend configurado na Vercel e envio confirmado em 08/11/2026.
+- [ ] **E-mail público** (opcional): definir `person.email` em `src/config/site.ts`.
 - [ ] **RPG Isekai**: o repositório é privado. Se ficar público, preencha `github` em
       `src/data/projects.ts`.
 - [ ] **Datas da timeline**: preencher os anos de ingresso nas graduações em
