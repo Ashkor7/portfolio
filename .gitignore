@@ -1,0 +1,27 @@
+# dependências e build
+node_modules
+dist
+dist-ssr
+*.local
+
+# ambiente (segredos nunca entram no Git)
+.env
+.env.*
+!.env.example
+.vercel
+
+# testes e ferramentas
+coverage
+playwright-report
+test-results
+blob-report
+.playwright-mcp
+docs/reference/compare/
+
+# editor / SO
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.log
