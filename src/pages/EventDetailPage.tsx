@@ -1,0 +1,164 @@
+import { Link, useParams } from 'react-router'
+import { ArrowLeft, Check, Trophy } from 'lucide-react'
+import { EventLinks } from '@/components/events/EventLinks'
+import { PhotoGallery } from '@/components/events/PhotoGallery'
+import { Badge } from '@/components/ui/Badge'
+import { HudCard } from '@/components/ui/HudCard'
+import { getEventBySlug } from '@/data/events'
+import { person } from '@/config/site'
+import { usePageMeta } from '@/hooks/usePageMeta'
+import { NotFoundContent } from './NotFoundPage'
+
+export function EventDetailPage() {
+  const { slug } = useParams()
+  const event = getEventBySlug(slug)
+
+  usePageMeta(
+    event
+      ? {
+          title: `${event.name} — Evento | ${person.name}`,
+          description: event.summary,
+          path: `/events/${event.slug}`,
+          type: 'article',
+          image: event.cover.src,
+        }
+      : {
+          title: `Evento não encontrado | ${person.name}`,
+          description: 'Este evento não existe no registro.',
+          path: `/events/${slug ?? ''}`,
+          noindex: true,
+        },
+  )
+
+  return (
+    <main
+      id="main"
+      tabIndex={-1}
+      className="mx-auto max-w-5xl px-4 pt-28 pb-24 outline-none sm:px-6"
+    >
+      {event ? (
+        <article aria-labelledby="event-title">
+          <Link
+            to={{ pathname: '/', hash: 'events' }}
+            className="inline-flex min-h-11 items-center gap-2 font-mono text-xs text-muted-foreground uppercase hover:text-neon"
+          >
+            <ArrowLeft className="size-4" aria-hidden="true" />
+            Field Events
+          </Link>
+
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <span className="font-mono text-xs text-neon">{event.id}</span>
+            <Badge tone="industrial">{event.category}</Badge>
+            {event.result && (
+              <Badge tone="industrial">
+                <Trophy className="size-3.5" aria-hidden="true" />
+                {event.result}
+              </Badge>
+            )}
+          </div>
+          <h1
+            id="event-title"
+            className="mt-4 font-display text-3xl font-black break-words uppercase sm:text-5xl"
+          >
+            {event.name}
+          </h1>
+          <p className="mt-3 max-w-2xl text-muted-foreground">{event.summary}</p>
+
+          <figure className="mt-8">
+            <img
+              src={event.cover.src}
+              alt={event.cover.alt}
+              width={event.cover.width}
+              height={event.cover.height}
+              className="clip-hud aspect-[16/9] w-full border border-border object-cover"
+            />
+          </figure>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+            <HudCard>
+              <h2 className="font-mono text-xs tracking-widest text-neon">01 // SOBRE O EVENTO</h2>
+              <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
+                {event.description.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
+            </HudCard>
+            <HudCard tone="industrial">
+              <h2 className="font-mono text-xs tracking-widest text-industrial">02 // REGISTRO</h2>
+              <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 font-mono text-xs">
+                {(
+                  [
+                    ['Data', event.date],
+                    ['Local', event.location],
+                    ['Organização', event.organizer],
+                    ['Função', event.role],
+                    ['Resultado', event.result],
+                  ] as const
+                )
+                  .filter(([, value]) => value)
+                  .map(([label, value]) => (
+                    <div key={label} className="contents">
+                      <dt className="text-muted-foreground uppercase">{label}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+              </dl>
+            </HudCard>
+          </div>
+
+          <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            {event.project && (
+              <HudCard tone="cyber">
+                <h2 className="font-mono text-xs tracking-widest text-cyber-soft">03 // PROJETO</h2>
+                <p className="mt-3 font-display text-xl font-bold uppercase">
+                  {event.project.name}
+                </p>
+                <p className="mt-1 font-mono text-xs text-industrial">{event.project.tagline}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{event.project.description}</p>
+              </HudCard>
+            )}
+            <HudCard tone="terminal">
+              <h2 className="font-mono text-xs tracking-widest text-terminal">04 // DESTAQUES</h2>
+              <ul className="mt-3 space-y-2 text-sm">
+                {event.highlights.map((h) => (
+                  <li key={h} className="flex gap-3">
+                    <Check className="mt-0.5 size-4 shrink-0 text-terminal" aria-hidden="true" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </HudCard>
+          </div>
+
+          {event.links.length > 0 && (
+            <section aria-labelledby="event-links-title" className="mt-10">
+              <h2 id="event-links-title" className="font-mono text-xs tracking-widest text-neon">
+                05 // PUBLICAÇÕES
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                O relato completo, com mais detalhes do que foi feito, está nos posts:
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3 [--ghost-bg:var(--background)]">
+                <EventLinks event={event} />
+              </div>
+            </section>
+          )}
+
+          <section aria-labelledby="event-gallery-title" className="mt-12">
+            <h2 id="event-gallery-title" className="font-mono text-xs tracking-widest text-neon">
+              06 // GALERIA — {event.photos.length} FOTOS
+            </h2>
+            <div className="mt-4">
+              <PhotoGallery photos={event.photos} label={`Fotos do ${event.name}`} />
+            </div>
+          </section>
+        </article>
+      ) : (
+        <NotFoundContent
+          code="EVENT_NOT_FOUND"
+          message={`Nenhum evento com o identificador “${slug}” no registro.`}
+        />
+      )}
+    </main>
+  )
+}

@@ -21,6 +21,7 @@
     "test:e2e:update": "playwright test --update-snapshots",
     "visual:compare": "node scripts/visual-compare.mjs",
     "og:image": "node scripts/generate-og-image.mjs",
+    "photos": "node scripts/optimize-photos.mjs",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {

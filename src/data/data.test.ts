@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest'
+import { events } from './events'
 import { filterProjects, getProjectBySlug, parseProjectFilter, projects } from './projects'
 import { journey } from './journey'
 import { person, pendingValidation, socialLinks } from '@/config/site'
+
+// Arquivos em public/, para conferir se as fotos dos eventos existem.
+const publicFiles = new Set(
+  Object.keys(import.meta.glob('/public/events/**/*.webp')).map((p) => p.replace(/^\/public/, '')),
+)
 
 describe('dados dos projetos', () => {
   it('tem ids e slugs únicos', () => {
@@ -37,6 +43,23 @@ describe('dados dos projetos', () => {
       if (p.demo) expect(p.demo).not.toMatch(generic)
     }
     for (const l of socialLinks) expect(l.href).not.toMatch(generic)
+    for (const e of events) for (const l of e.links) expect(l.href).not.toMatch(generic)
+  })
+
+  it('eventos têm slugs únicos, fotos existentes e links de posts específicos', () => {
+    expect(new Set(events.map((e) => e.slug)).size).toBe(events.length)
+    expect(new Set(events.map((e) => e.id)).size).toBe(events.length)
+    for (const e of events) {
+      expect(e.photos).toContain(e.cover)
+      for (const p of e.photos) {
+        expect(p.alt.length).toBeGreaterThan(10)
+        for (const file of [p.src, p.thumb]) expect(publicFiles.has(file), file).toBe(true)
+      }
+      for (const l of e.links) {
+        if (l.kind === 'linkedin') expect(l.href).toMatch(/linkedin\.com\/(feed\/update|posts)\//)
+        if (l.kind === 'instagram') expect(l.href).toMatch(/instagram\.com\/p\//)
+      }
+    }
   })
 
   it('não publica e-mail de exemplo', () => {

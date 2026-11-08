@@ -40,6 +40,7 @@ Para testar o envio real, use `vercel dev` com as variáveis configuradas.
 | `npm run check`          | lint + typecheck + testes + build                                     |
 | `npm run visual:compare` | compara cada seção com o site original (precisa do `preview` rodando) |
 | `npm run og:image`       | regenera `og-image.png` e ícones PNG                                  |
+| `npm run photos`         | converte fotos de eventos em WebP (grande + miniatura)                |
 
 Na primeira vez que for rodar o E2E: `npx playwright install chromium`.
 
@@ -64,6 +65,9 @@ Para testar um deploy: `E2E_BASE_URL=https://portfolio-leonardoribeiro.vercel.ap
   sensor → motor com resposta de 1ª ordem, gráfico de PWM + sinal digital, reinício e aviso
   de que não é hardware real. A lógica fica em `src/features/lab/simulation.ts`.
 - **Academic Journey:** timeline com filtro Realizado/Planejado e categorias.
+- **Field Events:** eventos e competições com resultado, função, projeto, links dos posts
+  (LinkedIn/Instagram) e página `/events/{slug}` com galeria de fotos ampliável (teclado,
+  Esc e setas).
 - **Contato:** validação acessível, honeypot, tempo mínimo, loading/sucesso/erro reais.
   Sucesso só aparece após confirmação do servidor.
 - **Geral:** navbar fixa com seção ativa e progresso de rolagem, menu mobile acessível,
@@ -78,8 +82,13 @@ Para testar um deploy: `E2E_BASE_URL=https://portfolio-leonardoribeiro.vercel.ap
 | Projetos (cards e páginas)             | `src/data/projects.ts` |
 | Tecnologias                            | `src/data/stack.ts`    |
 | Timeline                               | `src/data/journey.ts`  |
+| Eventos e fotos                        | `src/data/events.ts`   |
 | Competências, linhas do terminal, menu | `src/data/profile.ts`  |
 | Cores e tipografia                     | `src/styles/index.css` |
+
+**Novo evento:** gere as fotos com
+`npm run photos -- public/events/<slug> "C:/caminho/foto.jpeg=nome" ...`, copie as dimensões
+impressas para `src/data/events.ts` e adicione o evento à lista.
 
 Capturas reais de projetos: coloque em `public/projects/` e adicione em `screenshots` do
 projeto, com `illustrative: false`.

@@ -4,9 +4,10 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath, URL } from 'node:url'
 import { projects } from './src/data/projects.ts'
+import { events } from './src/data/events.ts'
 
 /**
- * Gera robots.txt e sitemap.xml no build a partir dos dados dos projetos.
+ * Gera robots.txt e sitemap.xml no build a partir dos dados de projetos e eventos.
  * Sem VITE_SITE_URL, o sitemap é omitido (URLs absolutas seriam inventadas).
  */
 function seoFiles(siteUrl: string): Plugin {
@@ -26,7 +27,11 @@ function seoFiles(siteUrl: string): Plugin {
         this.warn('VITE_SITE_URL não definido: sitemap.xml não foi gerado.')
         return
       }
-      const paths = ['/', ...projects.map((p) => `/projects/${p.slug}`)]
+      const paths = [
+        '/',
+        ...projects.map((p) => `/projects/${p.slug}`),
+        ...events.map((e) => `/events/${e.slug}`),
+      ]
       const urls = paths.map((p) => `  <url><loc>${base}${p}</loc></url>`).join('\n')
       this.emitFile({
         type: 'asset',

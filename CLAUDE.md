@@ -45,7 +45,7 @@ desatualizado. Encerre-o antes de rodar o E2E.
 - **Não inventar** dados acadêmicos, profissionais, datas, links, métricas ou capturas.
 - Status reais: `Planned`/`Concept` não podem ter funcionalidades `done` (há teste).
 - Imagens ilustrativas devem ter `illustrative: true`.
-- Links ficam **só** em `src/config/site.ts` e `src/data/projects.ts`. Link não
+- Links ficam **só** em `src/config/site.ts`, `src/data/projects.ts` e `src/data/events.ts`. Link não
   confirmado = `verified: false`.
 - Nunca simular envio do formulário. Segredos só em variáveis de ambiente do servidor.
 

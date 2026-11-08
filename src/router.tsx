@@ -6,9 +6,13 @@ import { RouteLoading } from '@/components/layout/RouteLoading'
 import { HomePage } from '@/pages/HomePage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 
-// A página de detalhes é carregada sob demanda (code splitting).
+// As páginas de detalhes são carregadas sob demanda (code splitting).
 const ProjectDetailPage = lazy(() =>
   import('@/pages/ProjectDetailPage').then((m) => ({ default: m.ProjectDetailPage })),
+)
+
+const EventDetailPage = lazy(() =>
+  import('@/pages/EventDetailPage').then((m) => ({ default: m.EventDetailPage })),
 )
 
 export const routes: RouteObject[] = [
@@ -22,6 +26,14 @@ export const routes: RouteObject[] = [
         element: (
           <Suspense fallback={<RouteLoading />}>
             <ProjectDetailPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'events/:slug',
+        element: (
+          <Suspense fallback={<RouteLoading />}>
+            <EventDetailPage />
           </Suspense>
         ),
       },

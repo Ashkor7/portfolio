@@ -53,5 +53,6 @@ export const navSections = [
   { id: 'stack', label: 'Stack' },
   { id: 'lab', label: 'Lab' },
   { id: 'journey', label: 'Jornada' },
+  { id: 'events', label: 'Eventos' },
   { id: 'contact', label: 'Contato' },
 ] as const

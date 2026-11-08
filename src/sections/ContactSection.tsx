@@ -23,7 +23,7 @@ export function ContactSection() {
       aria-labelledby="contact-title"
       className="mx-auto max-w-7xl scroll-mt-20 px-4 py-24 sm:px-6"
     >
-      <SectionHeader id="contact-title" code="07" title="Establish Connection" />
+      <SectionHeader id="contact-title" code="08" title="Establish Connection" />
       <div className="grid gap-8 lg:grid-cols-2">
         <div>
           <h3 className="font-display text-3xl leading-tight font-black uppercase sm:text-4xl">

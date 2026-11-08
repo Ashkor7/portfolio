@@ -75,3 +75,40 @@ export interface JourneyEvent {
   category: JourneyCategory
   status: 'done' | 'planned'
 }
+
+export interface EventPhoto {
+  /** Versão grande (lado maior 1600 px), usada na galeria ampliada. */
+  src: string
+  /** Miniatura (lado maior 640 px), usada nos cards e na grade. */
+  thumb: string
+  alt: string
+  width: number
+  height: number
+}
+
+export type EventCategory = 'Hackathon' | 'Competição' | 'Palestra' | 'Workshop' | 'Feira'
+
+export interface PortfolioEvent {
+  /** Identificador estável exibido no card. */
+  id: string
+  slug: string
+  name: string
+  category: EventCategory
+  /** Texto exibido como data. Use só o que foi confirmado (ex.: "2026" ou "NOV 2026"). */
+  date: string
+  location: string
+  organizer: string
+  /** Papel exercido no evento. */
+  role: string
+  /** Resultado/premiação, quando houver. */
+  result?: string
+  summary: string
+  description: string[]
+  highlights: string[]
+  /** Projeto desenvolvido no evento, quando houver. */
+  project?: { name: string; tagline: string; description: string }
+  /** Publicações oficiais sobre o evento (posts do LinkedIn/Instagram). */
+  links: { kind: 'linkedin' | 'instagram' | 'site'; label: string; href: string }[]
+  cover: EventPhoto
+  photos: EventPhoto[]
+}

@@ -46,6 +46,7 @@ test.describe('Home', () => {
     for (const [label, id] of [
       ['Projetos', 'projects'],
       ['Lab', 'lab'],
+      ['Eventos', 'events'],
       ['Contato', 'contact'],
     ] as const) {
       await goToSection(page, label)
@@ -81,7 +82,7 @@ test.describe('Home', () => {
   test('não há rolagem horizontal em larguras comuns', async ({ page }) => {
     for (const width of [360, 390, 768, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 })
-      for (const path of ['/', '/projects/game-library']) {
+      for (const path of ['/', '/projects/game-library', '/events/startup-weekend-pelotas-2026']) {
         await page.goto(path)
         const overflow = await page.evaluate(
           () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -144,6 +145,38 @@ test.describe('Project Database', () => {
     await expect(page.getByText(/RECORD_NOT_FOUND/)).toBeVisible()
     await page.goto('/qualquer-coisa')
     await expect(page.getByText(/ROUTE_NOT_FOUND/)).toBeVisible()
+  })
+})
+
+test.describe('Eventos', () => {
+  test('card leva à página do evento, com posts e galeria ampliável', async ({ page }) => {
+    await page.goto('/#events')
+    const card = page.locator('#events article').first()
+    await expect(card.getByText('1º lugar')).toBeVisible()
+    await expect(card.getByRole('link', { name: /Post no LinkedIn/ })).toHaveAttribute(
+      'href',
+      /linkedin\.com\/feed\/update\//,
+    )
+    await card.getByRole('link', { name: /Fotos e detalhes/ }).click()
+    await expect(page).toHaveURL('/events/startup-weekend-pelotas-2026')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Startup Weekend')
+
+    const thumb = page.getByRole('button', { name: /Ampliar foto 2 de/ })
+    await thumb.click()
+    const dialog = page.getByRole('dialog')
+    await expect(dialog).toHaveAccessibleName(/Foto 2 de/)
+    await page.keyboard.press('ArrowRight')
+    await expect(dialog).toHaveAccessibleName(/Foto 3 de/)
+    await page.keyboard.press('Escape')
+    await expect(dialog).toHaveCount(0)
+    await expect(page.getByRole('button', { name: /Ampliar foto 3 de/ })).toBeFocused()
+  })
+
+  test('acesso direto e slug inexistente', async ({ page }) => {
+    await page.goto('/events/startup-weekend-pelotas-2026')
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+    await page.goto('/events/nao-existe')
+    await expect(page.getByText(/EVENT_NOT_FOUND/)).toBeVisible()
   })
 })
 
@@ -219,7 +252,7 @@ test.describe('Acessibilidade', () => {
     await expect(page.getByRole('link', { name: 'Pular para o conteúdo' })).toBeFocused()
   })
 
-  for (const path of ['/', '/projects/game-library']) {
+  for (const path of ['/', '/projects/game-library', '/events/startup-weekend-pelotas-2026']) {
     test(`sem violações graves de acessibilidade (axe) em ${path}`, async ({ page }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' })
       await page.goto(path)

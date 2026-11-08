@@ -6,6 +6,7 @@ import { ProjectsSection } from '@/sections/ProjectsSection'
 import { StackSection } from '@/sections/StackSection'
 import { LabSection } from '@/sections/LabSection'
 import { JourneySection } from '@/sections/JourneySection'
+import { EventsSection } from '@/sections/EventsSection'
 import { ContactSection } from '@/sections/ContactSection'
 
 export function HomePage() {
@@ -18,6 +19,7 @@ export function HomePage() {
       <StackSection />
       <LabSection />
       <JourneySection />
+      <EventsSection />
       <ContactSection />
     </main>
   )
