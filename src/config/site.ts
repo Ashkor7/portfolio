@@ -24,11 +24,8 @@ export const person = {
   handle: 'LR',
   role: 'Software Development × Control & Automation Engineering',
   bio: 'Estudante de Engenharia de Controle e Automação e de Análise e Desenvolvimento de Sistemas. Conecto o mundo físico ao digital com código, eletrônica e automação.',
-  /**
-   * E-mail público de contato. null até o dono definir um endereço validado —
-   * nunca publicar um e-mail de exemplo.
-   */
-  email: null as string | null,
+  /** E-mail público de contato, definido pelo dono. Nunca usar um e-mail de exemplo. */
+  email: 'leonardoribeiro1785@gmail.com' as string | null,
 }
 
 export const socialLinks: SocialLink[] = [

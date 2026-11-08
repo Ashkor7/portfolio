@@ -110,7 +110,7 @@ Netlify/Cloudflare. Configure _fallback_ de SPA para `index.html`.
 
 - [x] **LinkedIn**: perfil confirmado manualmente em 08/11/2026.
 - [x] **Envio do formulário**: Resend configurado na Vercel e envio confirmado em 08/11/2026.
-- [ ] **E-mail público** (opcional): definir `person.email` em `src/config/site.ts`.
+- [x] **E-mail público**: exibido na seção Contato (`person.email`).
 - [ ] **RPG Isekai**: o repositório é privado. Se ficar público, preencha `github` em
       `src/data/projects.ts`.
 - [x] **Datas da timeline**: graduações iniciadas em jan/2026 (Engenharia) e mar/2026 (ADS).
