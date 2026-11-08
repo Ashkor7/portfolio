@@ -43,6 +43,9 @@ Para testar o envio real, use `vercel dev` com as variáveis configuradas.
 
 Na primeira vez que for rodar o E2E: `npx playwright install chromium`.
 
+Para testar um deploy: `E2E_BASE_URL=https://portfolio-leonardoribeiro.vercel.app npm run test:e2e`
+(o teste de contato só valida os campos e não envia e-mail).
+
 ## Funcionalidades
 
 - **Hero:** terminal de boot animado (pode ser pulado, toca uma vez por sessão, respeita

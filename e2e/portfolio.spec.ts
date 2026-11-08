@@ -171,6 +171,9 @@ test.describe('Contato', () => {
     await expect(form.getByText('Informe seu nome.')).toBeVisible()
     await expect(form.getByLabel('Nome')).toBeFocused()
 
+    // Contra um deploy real o envio mandaria um e-mail de verdade.
+    if (process.env.E2E_BASE_URL) return
+
     await form.getByLabel('Nome').fill('Visitante')
     await form.getByLabel('E-mail').fill('visitante@empresa.com')
     await form.getByLabel('Mensagem').fill('Mensagem de teste do E2E.')

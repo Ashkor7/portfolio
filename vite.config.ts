@@ -37,8 +37,9 @@ function seoFiles(siteUrl: string): Plugin {
   }
 }
 
-// Garante substituição de %VITE_SITE_URL% no index.html mesmo sem a variável.
-process.env.VITE_SITE_URL ??= ''
+// Garante substituição de %VITE_SITE_URL% no index.html mesmo sem a variável e remove a
+// barra final (evita `https://site//og-image.png`).
+process.env.VITE_SITE_URL = (process.env.VITE_SITE_URL ?? '').replace(/\/+$/, '')
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_')

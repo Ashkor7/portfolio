@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
 
 const PORT = 4173
+// E2E_BASE_URL=https://... roda os testes contra um deploy, sem subir o preview local.
+const remote = process.env.E2E_BASE_URL
 
 export default defineConfig({
   testDir: './e2e',
@@ -12,7 +14,7 @@ export default defineConfig({
     toHaveScreenshot: { maxDiffPixelRatio: 0.02, animations: 'disabled' },
   },
   use: {
-    baseURL: `http://localhost:${PORT}`,
+    baseURL: remote ?? `http://localhost:${PORT}`,
     trace: 'retain-on-failure',
   },
   projects: [
@@ -22,11 +24,13 @@ export default defineConfig({
     },
     { name: 'mobile', use: { ...devices['Pixel 7'], viewport: { width: 390, height: 844 } } },
   ],
-  webServer: {
-    // Testa o build de produção real.
-    command: 'npm run build && npm run preview',
-    url: `http://localhost:${PORT}`,
-    reuseExistingServer: !process.env.CI,
-    timeout: 180_000,
-  },
+  webServer: remote
+    ? undefined
+    : {
+        // Testa o build de produção real.
+        command: 'npm run build && npm run preview',
+        url: `http://localhost:${PORT}`,
+        reuseExistingServer: !process.env.CI,
+        timeout: 180_000,
+      },
 })
