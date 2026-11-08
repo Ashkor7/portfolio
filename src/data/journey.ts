@@ -4,25 +4,25 @@ import type { JourneyEvent } from './types'
  * Linha do tempo acadêmica.
  *
  * O site original exibia "2024" como início das duas graduações e "2025" para os
- * primeiros projetos; essas datas não puderam ser confirmadas e foram removidas.
+ * primeiros projetos; essas datas estavam erradas e foram substituídas.
  * Preencha `date` somente com datas reais. Com `date: null`, a timeline mostra
  * "EM CURSO" (realizado) ou "PRÓXIMO PASSO" (planejado).
  *
- * Datas confirmadas pelo histórico do Git: Game Library (out/2026) e
- * protótipo do RPG Isekai (out/2026).
+ * Datas confirmadas: graduações pelo dono (jan/2026 e mar/2026, conforme o LinkedIn);
+ * Game Library e protótipo do RPG Isekai (out/2026) pelo histórico do Git.
  */
 export const journey: JourneyEvent[] = [
   {
-    date: null,
-    title: 'Análise e Desenvolvimento de Sistemas',
-    description: 'Graduação em ADS em andamento.',
+    date: 'JAN 2026',
+    title: 'Engenharia de Controle e Automação',
+    description: 'Início da graduação em Engenharia de Controle e Automação.',
     category: 'Graduação',
     status: 'done',
   },
   {
-    date: null,
-    title: 'Engenharia de Controle e Automação',
-    description: 'Segunda graduação, cursada em paralelo.',
+    date: 'MAR 2026',
+    title: 'Análise e Desenvolvimento de Sistemas',
+    description: 'Início da graduação em ADS, cursada em paralelo.',
     category: 'Graduação',
     status: 'done',
   },

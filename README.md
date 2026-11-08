@@ -113,8 +113,7 @@ Netlify/Cloudflare. Configure _fallback_ de SPA para `index.html`.
 - [ ] **E-mail público** (opcional): definir `person.email` em `src/config/site.ts`.
 - [ ] **RPG Isekai**: o repositório é privado. Se ficar público, preencha `github` em
       `src/data/projects.ts`.
-- [ ] **Datas da timeline**: preencher os anos de ingresso nas graduações em
-      `src/data/journey.ts` (as datas do Lovable não puderam ser confirmadas).
+- [x] **Datas da timeline**: graduações iniciadas em jan/2026 (Engenharia) e mar/2026 (ADS).
 - [ ] **Capturas reais**: substituir as ilustrações por screenshots reais quando existirem.
 
 Em desenvolvimento, o console avisa sobre os itens pendentes de `src/config/site.ts`.
