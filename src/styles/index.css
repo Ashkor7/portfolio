@@ -1,0 +1,222 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens — valores extraídos do site original (Lovable, nov/2026).
+ * Equivalentes aproximados em hex: background #080b12 · surface #151d2c ·
+ * neon #00d9ff · cyber #9d4edd · terminal #00ffb2 · industrial #ff9f43.
+ */
+:root {
+  --background: oklch(14.5% 0.016 260);
+  --surface: oklch(20.5% 0.03 262);
+  --foreground: oklch(95.5% 0.015 255);
+  --card: oklch(18% 0.025 262);
+  --neon: oklch(82% 0.15 215);
+  --cyber: oklch(58% 0.22 300);
+  /* Variante clara do roxo para TEXTO pequeno: o roxo original não atinge 4.5:1 sobre o fundo. */
+  --cyber-soft: oklch(72% 0.17 300);
+  --terminal: oklch(88% 0.18 168);
+  --industrial: oklch(77% 0.16 58);
+  --muted: oklch(23% 0.03 262);
+  --muted-foreground: oklch(65% 0.03 260);
+  --destructive: oklch(65% 0.22 25);
+  --border: oklch(82% 0.15 215 / 0.18);
+  --input: oklch(82% 0.15 215 / 0.25);
+  --primary-foreground: oklch(14.5% 0.016 260);
+  --glow-neon: 0 0 24px -4px var(--neon);
+  --glow-cyber: 0 0 24px -4px var(--cyber);
+  --nav-height: 4rem;
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-neon: var(--neon);
+  --color-cyber: var(--cyber);
+  --color-cyber-soft: var(--cyber-soft);
+  --color-terminal: var(--terminal);
+  --color-industrial: var(--industrial);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+  --radius: 0.25rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 1rem);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image:
+      linear-gradient(color-mix(in oklab, var(--neon) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklab, var(--neon) 5%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--neon);
+    color: var(--background);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--neon);
+    outline-offset: 2px;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  /* Cantos chanfrados de HUD (canto superior direito e inferior esquerdo). */
+  .clip-hud {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 18px) 0,
+      100% 18px,
+      100% 100%,
+      18px 100%,
+      0 calc(100% - 18px)
+    );
+  }
+
+  .clip-btn {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
+  }
+
+  /* Preenchimento do botão ghost. --ghost-bg permite casar com o fundo do card. */
+  .btn-ghost-inner {
+    background: var(--ghost-bg, var(--background));
+  }
+
+  .group\/btn:hover .btn-ghost-inner {
+    background:
+      linear-gradient(
+        color-mix(in oklab, var(--neon) 12%, transparent),
+        color-mix(in oklab, var(--neon) 12%, transparent)
+      ),
+      var(--ghost-bg, var(--background));
+  }
+
+  .text-glow {
+    text-shadow: 0 0 18px color-mix(in oklab, var(--neon) 70%, transparent);
+  }
+
+  .glow-neon {
+    box-shadow: var(--glow-neon);
+  }
+
+  .glow-cyber {
+    box-shadow: var(--glow-cyber);
+  }
+
+  .anim-dash {
+    stroke-dasharray: 6 14;
+    animation: dash 1.6s linear infinite;
+  }
+
+  .anim-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .anim-led {
+    animation: pulse-led 1.8s ease-in-out infinite;
+  }
+
+  .anim-spin {
+    animation: spin-slow 24s linear infinite;
+  }
+
+  .anim-boot {
+    animation: rise 0.7s ease-out both;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s,
+      transform 0.7s;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -40px;
+  }
+}
+
+@keyframes pulse-led {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

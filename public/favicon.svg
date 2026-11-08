@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#080b12"/>
+  <path d="M2 2H52L62 12V62H12L2 52Z" fill="#101827" stroke="#00d9ff" stroke-width="3"/>
+  <g stroke="#00d9ff" stroke-width="2">
+    <path d="M20 2V8M32 2V8M44 2V8M20 56V62M32 56V62M44 56V62"/>
+  </g>
+  <text x="32" y="41" text-anchor="middle" font-family="Orbitron, Arial Black, sans-serif" font-weight="900" font-size="22" fill="#00d9ff">LR</text>
+</svg>
