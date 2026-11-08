@@ -88,6 +88,22 @@ export interface EventPhoto {
 
 export type EventCategory = 'Hackathon' | 'Competição' | 'Palestra' | 'Workshop' | 'Feira'
 
+export interface EventProject {
+  name: string
+  tagline: string
+  description: string
+  /** Problema que o projeto resolve. */
+  problem?: string
+  /** Como a solução funciona, passo a passo. */
+  features?: string[]
+  /** Tecnologias do MVP. */
+  tech?: string[]
+  /** O que o MVP demonstrava. */
+  mvp?: string
+  /** Site público do projeto. */
+  url?: string
+}
+
 export interface PortfolioEvent {
   /** Identificador estável exibido no card. */
   id: string
@@ -104,9 +120,12 @@ export interface PortfolioEvent {
   result?: string
   summary: string
   description: string[]
+  /** Resultados concretos (prêmio, números de validação etc.). */
   highlights: string[]
+  /** O que o evento ensinou. */
+  learnings?: string[]
   /** Projeto desenvolvido no evento, quando houver. */
-  project?: { name: string; tagline: string; description: string }
+  project?: EventProject
   /** Publicações oficiais sobre o evento (posts do LinkedIn/Instagram). */
   links: { kind: 'linkedin' | 'instagram' | 'site'; label: string; href: string }[]
   cover: EventPhoto

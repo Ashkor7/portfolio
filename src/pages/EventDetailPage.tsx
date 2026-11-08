@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router'
-import { ArrowLeft, Check, Trophy } from 'lucide-react'
+import { ArrowLeft, Check, ExternalLink, Trophy } from 'lucide-react'
 import { EventLinks } from '@/components/events/EventLinks'
 import { PhotoGallery } from '@/components/events/PhotoGallery'
 import { Badge } from '@/components/ui/Badge'
@@ -29,6 +29,11 @@ export function EventDetailPage() {
           noindex: true,
         },
   )
+
+  const project = event?.project
+  // Numeração dos blocos (// 01, // 02…) segue só os blocos exibidos.
+  let block = 0
+  const num = () => String(++block).padStart(2, '0')
 
   return (
     <main
@@ -76,7 +81,9 @@ export function EventDetailPage() {
 
           <div className="mt-10 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
             <HudCard>
-              <h2 className="font-mono text-xs tracking-widest text-neon">01 // SOBRE O EVENTO</h2>
+              <h2 className="font-mono text-xs tracking-widest text-neon">
+                {num()} // SOBRE O EVENTO
+              </h2>
               <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
                 {event.description.map((p) => (
                   <p key={p}>{p}</p>
@@ -84,7 +91,9 @@ export function EventDetailPage() {
               </div>
             </HudCard>
             <HudCard tone="industrial">
-              <h2 className="font-mono text-xs tracking-widest text-industrial">02 // REGISTRO</h2>
+              <h2 className="font-mono text-xs tracking-widest text-industrial">
+                {num()} // REGISTRO
+              </h2>
               <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 font-mono text-xs">
                 {(
                   [
@@ -106,19 +115,78 @@ export function EventDetailPage() {
             </HudCard>
           </div>
 
-          <div className="mt-5 grid gap-5 sm:grid-cols-2">
-            {event.project && (
+          {project && (
+            <div className="mt-5 grid gap-5 lg:grid-cols-2">
               <HudCard tone="cyber">
-                <h2 className="font-mono text-xs tracking-widest text-cyber-soft">03 // PROJETO</h2>
-                <p className="mt-3 font-display text-xl font-bold uppercase">
-                  {event.project.name}
-                </p>
-                <p className="mt-1 font-mono text-xs text-industrial">{event.project.tagline}</p>
-                <p className="mt-3 text-sm text-muted-foreground">{event.project.description}</p>
+                <h2 className="font-mono text-xs tracking-widest text-cyber-soft">
+                  {num()} // PROJETO
+                </h2>
+                <p className="mt-3 font-display text-xl font-bold uppercase">{project.name}</p>
+                <p className="mt-1 font-mono text-xs text-industrial">{project.tagline}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{project.description}</p>
+                {project.problem && (
+                  <>
+                    <h3 className="mt-5 font-mono text-[11px] tracking-widest text-cyber-soft uppercase">
+                      O problema
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{project.problem}</p>
+                  </>
+                )}
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex min-h-11 items-center gap-2 font-mono text-xs tracking-widest text-neon uppercase underline-offset-4 hover:underline"
+                  >
+                    <ExternalLink className="size-4" aria-hidden="true" />
+                    {new URL(project.url).hostname}
+                    <span className="sr-only"> (site da {project.name}, abre em nova aba)</span>
+                  </a>
+                )}
+              </HudCard>
+              {project.features && (
+                <HudCard>
+                  <h2 className="font-mono text-xs tracking-widest text-neon">
+                    {num()} // COMO FUNCIONA
+                  </h2>
+                  <ol className="mt-3 space-y-3 text-sm">
+                    {project.features.map((f, i) => (
+                      <li key={f} className="flex gap-3">
+                        <span className="font-mono text-xs text-neon" aria-hidden="true">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <span className="text-muted-foreground">{f}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </HudCard>
+              )}
+            </div>
+          )}
+
+          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+            {project?.mvp && (
+              <HudCard tone="neon">
+                <h2 className="font-mono text-xs tracking-widest text-neon">
+                  {num()} // MVP E PARTE TÉCNICA
+                </h2>
+                {project.tech && (
+                  <ul className="mt-3 flex flex-wrap gap-2" aria-label="Tecnologias do MVP">
+                    {project.tech.map((t) => (
+                      <li key={t}>
+                        <Badge tone="cyber">{t}</Badge>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <p className="mt-4 text-sm text-muted-foreground">{project.mvp}</p>
               </HudCard>
             )}
             <HudCard tone="terminal">
-              <h2 className="font-mono text-xs tracking-widest text-terminal">04 // DESTAQUES</h2>
+              <h2 className="font-mono text-xs tracking-widest text-terminal">
+                {num()} // RESULTADOS
+              </h2>
               <ul className="mt-3 space-y-2 text-sm">
                 {event.highlights.map((h) => (
                   <li key={h} className="flex gap-3">
@@ -130,10 +198,28 @@ export function EventDetailPage() {
             </HudCard>
           </div>
 
+          {event.learnings && (
+            <HudCard tone="industrial" className="mt-5">
+              <h2 className="font-mono text-xs tracking-widest text-industrial">
+                {num()} // O QUE LEVO DESSE EVENTO
+              </h2>
+              <ul className="mt-3 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
+                {event.learnings.map((l) => (
+                  <li key={l} className="flex gap-3">
+                    <span className="font-mono text-industrial" aria-hidden="true">
+                      &gt;
+                    </span>
+                    <span className="text-muted-foreground">{l}</span>
+                  </li>
+                ))}
+              </ul>
+            </HudCard>
+          )}
+
           {event.links.length > 0 && (
             <section aria-labelledby="event-links-title" className="mt-10">
               <h2 id="event-links-title" className="font-mono text-xs tracking-widest text-neon">
-                05 // PUBLICAÇÕES
+                {num()} // PUBLICAÇÕES
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 O relato completo, com mais detalhes do que foi feito, está nos posts:
@@ -146,7 +232,7 @@ export function EventDetailPage() {
 
           <section aria-labelledby="event-gallery-title" className="mt-12">
             <h2 id="event-gallery-title" className="font-mono text-xs tracking-widest text-neon">
-              06 // GALERIA — {event.photos.length} FOTOS
+              {num()} // GALERIA — {event.photos.length} FOTOS
             </h2>
             <div className="mt-4">
               <PhotoGallery photos={event.photos} label={`Fotos do ${event.name}`} />

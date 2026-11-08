@@ -41,10 +41,10 @@ export const journey: JourneyEvent[] = [
     status: 'done',
   },
   {
-    date: '2026',
+    date: 'OUT 2026',
     title: 'Startup Weekend Pelotas — 1º lugar',
     description:
-      'Equipe campeã do Techstars Startup Weekend Pelotas com a Melhor Obra; atuei como desenvolvedor.',
+      'Equipe campeã do Techstars Startup Weekend Pelotas com a Melhor Obra, marketplace de serviços com pagamento protegido; atuei no desenvolvimento do MVP.',
     category: 'Hackathon',
     status: 'done',
   },

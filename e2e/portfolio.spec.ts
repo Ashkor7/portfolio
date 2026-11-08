@@ -152,7 +152,7 @@ test.describe('Eventos', () => {
   test('card leva à página do evento, com posts e galeria ampliável', async ({ page }) => {
     await page.goto('/#events')
     const card = page.locator('#events article').first()
-    await expect(card.getByText('1º lugar')).toBeVisible()
+    await expect(card.getByText('1º lugar', { exact: true })).toBeVisible()
     await expect(card.getByRole('link', { name: /Post no LinkedIn/ })).toHaveAttribute(
       'href',
       /linkedin\.com\/feed\/update\//,
