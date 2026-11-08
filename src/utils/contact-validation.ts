@@ -29,7 +29,9 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 export function normalizeContact(input: Partial<ContactPayload>): ContactPayload {
   return {
-    name: String(input.name ?? '').trim(),
+    // O nome vai para o assunto do e-mail: quebras de linha e controles viram espaço.
+    // eslint-disable-next-line no-control-regex
+    name: String(input.name ?? '').replace(/[\u0000-\u001f\u007f]+/g, ' ').trim(),
     email: String(input.email ?? '').trim(),
     message: String(input.message ?? '').trim(),
     website: String(input.website ?? ''),

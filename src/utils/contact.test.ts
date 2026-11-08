@@ -24,6 +24,10 @@ describe('validação do contato', () => {
     expect(Object.keys(errors).sort()).toEqual(['email', 'message', 'name'])
   })
 
+  it('remove quebras de linha do nome (usado no assunto do e-mail)', () => {
+    expect(normalizeContact({ ...valid, name: 'Ana\r\nBcc: x@y.com' }).name).toBe('Ana Bcc: x@y.com')
+  })
+
   it('detecta honeypot e envio rápido demais', () => {
     expect(isHoneypotFilled(normalizeContact({ ...valid, website: 'spam.com' }))).toBe(true)
     expect(isTooFast(normalizeContact({ ...valid, elapsedMs: 500 }))).toBe(true)
