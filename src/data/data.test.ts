@@ -84,7 +84,10 @@ describe('dados dos projetos', () => {
     expect(parseProjectFilter(null)).toBe('All')
   })
 
-  it('timeline só tem eventos realizados ou planejados', () => {
-    expect(journey.every((e) => e.status === 'done' || e.status === 'planned')).toBe(true)
+  it('timeline: graduações e o RPG estão em andamento, não concluídos', () => {
+    const status = (title: RegExp) => journey.find((e) => title.test(e.title))?.status
+    expect(status(/Engenharia de Controle/)).toBe('progress')
+    expect(status(/Análise e Desenvolvimento/)).toBe('progress')
+    expect(status(/RPG Isekai/)).toBe('progress')
   })
 })

@@ -10,12 +10,13 @@ type JourneyFilter = 'all' | JourneyEvent['status']
 
 const statusLabel: Record<JourneyEvent['status'], string> = {
   done: 'REALIZADO',
+  progress: 'EM ANDAMENTO',
   planned: 'PLANEJADO',
 }
 
 function dateLabel(event: JourneyEvent) {
   if (event.date) return event.date
-  return event.status === 'done' ? 'EM CURSO' : 'PRÓXIMO PASSO'
+  return event.status === 'planned' ? 'PRÓXIMO PASSO' : 'EM CURSO'
 }
 
 export function JourneySection({ events = journey }: { events?: JourneyEvent[] }) {
@@ -25,6 +26,7 @@ export function JourneySection({ events = journey }: { events?: JourneyEvent[] }
   // A legenda do original vira filtro: clicar de novo no item ativo volta a mostrar tudo.
   const options: Array<{ value: JourneyFilter; label: string; marker: ReactNode }> = [
     { value: 'done', label: 'Realizado', marker: <Led /> },
+    { value: 'progress', label: 'Em andamento', marker: <Led tone="neon" /> },
     {
       value: 'planned',
       label: 'Planejado',
@@ -42,7 +44,7 @@ export function JourneySection({ events = journey }: { events?: JourneyEvent[] }
         id="journey-title"
         code="06"
         title="Academic Journey"
-        sub="Linha do tempo com o que já aconteceu e o que está planejado."
+        sub="Linha do tempo com o que já aconteceu, o que está em andamento e o que está planejado."
       />
       <div
         className="mb-6 flex flex-wrap items-center gap-2 font-mono text-xs"
@@ -88,9 +90,9 @@ export function JourneySection({ events = journey }: { events?: JourneyEvent[] }
                 aria-hidden="true"
                 className={cn(
                   'absolute top-1.5 -left-[calc(2rem+7px)] size-3.5 rounded-full',
-                  event.status === 'done'
-                    ? 'glow-neon bg-terminal'
-                    : 'border-2 border-industrial bg-background',
+                  event.status === 'done' && 'glow-neon bg-terminal',
+                  event.status === 'progress' && 'border-2 border-neon bg-neon/30',
+                  event.status === 'planned' && 'border-2 border-industrial bg-background',
                 )}
               />
               <p className="font-mono text-xs text-neon">

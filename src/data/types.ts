@@ -73,7 +73,8 @@ export interface JourneyEvent {
   title: string
   description: string
   category: JourneyCategory
-  status: 'done' | 'planned'
+  /** done = concluído; progress = em andamento; planned = ainda não começou. */
+  status: 'done' | 'progress' | 'planned'
 }
 
 export interface EventPhoto {

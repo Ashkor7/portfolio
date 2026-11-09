@@ -6,7 +6,7 @@ import type { JourneyEvent } from './types'
  * O site original exibia "2024" como início das duas graduações e "2025" para os
  * primeiros projetos; essas datas estavam erradas e foram substituídas.
  * Preencha `date` somente com datas reais. Com `date: null`, a timeline mostra
- * "EM CURSO" (realizado) ou "PRÓXIMO PASSO" (planejado).
+ * "EM CURSO" (realizado/em andamento) ou "PRÓXIMO PASSO" (planejado).
  *
  * Datas confirmadas: graduações pelo dono (jan/2026 e mar/2026, conforme o LinkedIn);
  * Game Library e protótipo do RPG Isekai (out/2026) pelo histórico do Git.
@@ -15,16 +15,16 @@ export const journey: JourneyEvent[] = [
   {
     date: 'JAN 2026',
     title: 'Engenharia de Controle e Automação',
-    description: 'Início da graduação em Engenharia de Controle e Automação.',
+    description: 'Graduação em Engenharia de Controle e Automação, iniciada em janeiro de 2026.',
     category: 'Graduação',
-    status: 'done',
+    status: 'progress',
   },
   {
     date: 'MAR 2026',
     title: 'Análise e Desenvolvimento de Sistemas',
-    description: 'Início da graduação em ADS, cursada em paralelo.',
+    description: 'Graduação em ADS, iniciada em março de 2026 e cursada em paralelo.',
     category: 'Graduação',
-    status: 'done',
+    status: 'progress',
   },
   {
     date: 'OUT 2026',
@@ -35,10 +35,11 @@ export const journey: JourneyEvent[] = [
   },
   {
     date: 'OUT 2026',
-    title: 'Protótipo do RPG Isekai',
-    description: 'Primeiro marco jogável em Godot 4: movimentação, colisões e câmera.',
+    title: 'RPG Isekai em desenvolvimento',
+    description:
+      'Jogo em Godot 4; o primeiro marco jogável (movimentação, colisões e câmera) já está pronto.',
     category: 'Projeto',
-    status: 'done',
+    status: 'progress',
   },
   {
     date: 'OUT 2026',
