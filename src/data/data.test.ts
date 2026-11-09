@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { events } from './events'
+import { events, orderEvents } from './events'
 import { filterProjects, getProjectBySlug, parseProjectFilter, projects } from './projects'
 import { journey } from './journey'
 import { person, pendingValidation, socialLinks } from '@/config/site'
@@ -60,6 +60,12 @@ describe('dados dos projetos', () => {
         if (l.kind === 'instagram') expect(l.href).toMatch(/instagram\.com\/p\//)
       }
     }
+  })
+
+  it('Startup Weekend e Hackathon Atlas ficam fixados no topo dos eventos', () => {
+    const slugs = orderEvents(events).map((e) => e.slug)
+    expect(slugs.slice(0, 2)).toEqual(['startup-weekend-pelotas-2026', 'hackathon-atlas-2026'])
+    expect(new Set(slugs)).toEqual(new Set(events.map((e) => e.slug)))
   })
 
   it('não publica e-mail de exemplo', () => {

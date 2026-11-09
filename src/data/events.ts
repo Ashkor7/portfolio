@@ -324,6 +324,23 @@ export const events: PortfolioEvent[] = [
   },
 ]
 
+/**
+ * Eventos fixados no topo da seção, nesta ordem (escolha do dono). Os demais
+ * seguem a ordem de `events`.
+ */
+export const pinnedEventSlugs = ['startup-weekend-pelotas-2026', 'hackathon-atlas-2026']
+
+/** Quantos eventos aparecem antes do botão "More events". */
+export const VISIBLE_EVENTS = 2
+
+export function orderEvents(list: PortfolioEvent[]): PortfolioEvent[] {
+  const rank = (e: PortfolioEvent) => {
+    const i = pinnedEventSlugs.indexOf(e.slug)
+    return i === -1 ? pinnedEventSlugs.length : i
+  }
+  return [...list].sort((a, b) => rank(a) - rank(b))
+}
+
 export function getEventBySlug(slug: string | undefined) {
   return events.find((e) => e.slug === slug)
 }

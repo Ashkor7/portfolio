@@ -156,6 +156,26 @@ test.describe('Project Database', () => {
 })
 
 test.describe('Eventos', () => {
+  test('mostra Startup Weekend e Atlas primeiro; "More events" revela os demais', async ({
+    page,
+  }) => {
+    await page.goto('/#events')
+    const cards = page.locator('#events article')
+    await expect(cards).toHaveCount(2)
+    await expect(cards.nth(0)).toContainText('Startup Weekend')
+    await expect(cards.nth(1)).toContainText('Hackathon Atlas')
+
+    const more = page.getByRole('button', { name: /More events/ })
+    await expect(more).toHaveAttribute('aria-expanded', 'false')
+    await more.click()
+    await expect(cards).toHaveCount(4)
+    await expect(cards.nth(2)).toContainText('TecnoPUC')
+    const less = page.getByRole('button', { name: /Show less/ })
+    await expect(less).toHaveAttribute('aria-expanded', 'true')
+    await less.click()
+    await expect(cards).toHaveCount(2)
+  })
+
   test('card leva à página do evento, com posts e galeria ampliável', async ({ page }) => {
     await page.goto('/#events')
     const card = page.locator('#events article', { hasText: 'Startup Weekend' })
