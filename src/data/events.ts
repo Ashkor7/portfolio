@@ -7,10 +7,51 @@ import type { EventPhoto, PortfolioEvent } from './types.ts'
  * e copie as dimensões impressas. Todas as fotos são reais, do próprio evento.
  * Não descreva nada que não esteja nas fotos ou nos posts do dono.
  */
-function photo(slug: string, name: string, width: number, height: number, alt: string): EventPhoto {
+function photo(
+  slug: string,
+  name: string,
+  width: number,
+  height: number,
+  alt: string,
+  position?: string,
+): EventPhoto {
   const base = `/events/${slug}/${name}`
-  return { src: `${base}.webp`, thumb: `${base}-thumb.webp`, alt, width, height }
+  return { src: `${base}.webp`, thumb: `${base}-thumb.webp`, alt, width, height, position }
 }
+
+const atlas = (name: string, width: number, height: number, alt: string, position?: string) =>
+  photo('hackathon-atlas-2026', name, width, height, alt, position)
+
+const atlasPhotos: EventPhoto[] = [
+  atlas(
+    'premiacao-cheque',
+    1086,
+    1448,
+    'Leonardo, ao centro, com o cheque simbólico de 2º lugar do Hackathon Atlas 2026, datado de 29/10/2026',
+    '50% 30%',
+  ),
+  atlas(
+    'pitch',
+    1448,
+    1086,
+    'Leonardo apresentando o pitch ao lado da tela com o logo da Atlas, com um colega de equipe à esquerda',
+  ),
+  atlas(
+    'leonardo-pitch',
+    1086,
+    1448,
+    'Leonardo, com as anotações na mão, apresentando o pitch em frente à tela com o logo da Atlas',
+    '50% 30%',
+  ),
+  atlas(
+    'equipe',
+    960,
+    1280,
+    'Leonardo e colegas em frente à parede verde com o letreiro da Atlas',
+    '50% 45%',
+  ),
+  atlas('leonardo-atlas', 876, 696, 'Leonardo em frente ao letreiro roxo da Atlas na parede verde'),
+]
 
 const swp = (name: string, width: number, height: number, alt: string) =>
   photo('startup-weekend-pelotas-2026', name, width, height, alt)
@@ -67,7 +108,32 @@ const startupWeekendPhotos: EventPhoto[] = [
   ),
 ]
 
+// Do mais recente para o mais antigo.
 export const events: PortfolioEvent[] = [
+  {
+    id: 'EVT_002',
+    slug: 'hackathon-atlas-2026',
+    name: 'Hackathon Atlas 2026',
+    category: 'Hackathon',
+    date: '29 OUT 2026',
+    organizer: 'Atlas Technologies',
+    role: 'Desenvolvedor e pitch',
+    result: '2º lugar',
+    summary:
+      '2º lugar no hackathon promovido pela Atlas Technologies. Atuei como desenvolvedor da solução e apresentei o pitch.',
+    description: [
+      'Hackathon promovido pela Atlas Technologies em 29 de outubro de 2026. Nossa equipe ficou em 2º lugar na competição.',
+      'Além de trabalhar no desenvolvimento da solução, fui eu quem apresentou o pitch da equipe.',
+    ],
+    highlights: [
+      '2º lugar no Hackathon Atlas 2026',
+      'Desenvolvimento da solução',
+      'Apresentação do pitch da equipe',
+    ],
+    links: [],
+    cover: atlasPhotos[0]!,
+    photos: atlasPhotos,
+  },
   {
     id: 'EVT_001',
     slug: 'startup-weekend-pelotas-2026',

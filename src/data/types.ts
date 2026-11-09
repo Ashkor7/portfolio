@@ -85,6 +85,8 @@ export interface EventPhoto {
   alt: string
   width: number
   height: number
+  /** `object-position` dos recortes (capa e miniaturas), p. ex. "50% 30%". Padrão: centro. */
+  position?: string
 }
 
 export type EventCategory = 'Hackathon' | 'Competição' | 'Palestra' | 'Workshop' | 'Feira'
@@ -113,7 +115,8 @@ export interface PortfolioEvent {
   category: EventCategory
   /** Texto exibido como data. Use só o que foi confirmado (ex.: "2026" ou "NOV 2026"). */
   date: string
-  location: string
+  /** Cidade/local. Omita enquanto não for confirmado. */
+  location?: string
   organizer: string
   /** Papel exercido no evento. */
   role: string

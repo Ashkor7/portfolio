@@ -83,6 +83,7 @@ export function PhotoGallery({ photos, label }: { photos: EventPhoto[]; label: s
                   height={p.height}
                   loading="lazy"
                   decoding="async"
+                  style={{ objectPosition: p.position }}
                   className="aspect-[4/3] w-full object-cover opacity-85 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
                 />
               </span>

@@ -50,6 +50,14 @@ export const journey: JourneyEvent[] = [
     status: 'done',
   },
   {
+    date: 'OUT 2026',
+    title: 'Hackathon Atlas — 2º lugar',
+    description:
+      'Hackathon da Atlas Technologies: atuei no desenvolvimento da solução e apresentei o pitch da equipe.',
+    category: 'Hackathon',
+    status: 'done',
+  },
+  {
     date: null,
     title: 'Novos hackathons e competições',
     description: 'Participação planejada em outros eventos de tecnologia.',

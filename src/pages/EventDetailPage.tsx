@@ -7,6 +7,7 @@ import { HudCard } from '@/components/ui/HudCard'
 import { getEventBySlug } from '@/data/events'
 import { person } from '@/config/site'
 import { usePageMeta } from '@/hooks/usePageMeta'
+import { cn } from '@/utils/cn'
 import { NotFoundContent } from './NotFoundPage'
 
 export function EventDetailPage() {
@@ -75,6 +76,7 @@ export function EventDetailPage() {
               alt={event.cover.alt}
               width={event.cover.width}
               height={event.cover.height}
+              style={{ objectPosition: event.cover.position }}
               className="clip-hud aspect-[16/9] w-full border border-border object-cover"
             />
           </figure>
@@ -183,7 +185,7 @@ export function EventDetailPage() {
                 <p className="mt-4 text-sm text-muted-foreground">{project.mvp}</p>
               </HudCard>
             )}
-            <HudCard tone="terminal">
+            <HudCard tone="terminal" className={cn(!project?.mvp && 'lg:col-span-2')}>
               <h2 className="font-mono text-xs tracking-widest text-terminal">
                 {num()} // RESULTADOS
               </h2>

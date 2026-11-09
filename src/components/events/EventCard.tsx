@@ -23,6 +23,7 @@ export function EventCard({ event }: { event: PortfolioEvent }) {
               height={event.cover.height}
               loading="lazy"
               decoding="async"
+              style={{ objectPosition: event.cover.position }}
               className="aspect-[16/10] w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
             />
             <span className="absolute top-3 left-3 bg-background/80 px-2 py-1 font-mono text-[10px] text-neon">
@@ -46,6 +47,7 @@ export function EventCard({ event }: { event: PortfolioEvent }) {
                     height={p.height}
                     loading="lazy"
                     decoding="async"
+                    style={{ objectPosition: p.position }}
                     className="aspect-[4/3] w-full object-cover opacity-70"
                   />
                 </li>
@@ -70,13 +72,15 @@ export function EventCard({ event }: { event: PortfolioEvent }) {
               </dt>
               <dd>{event.date}</dd>
             </div>
-            <div className="flex items-center gap-2">
-              <dt>
-                <MapPin className="size-4 text-neon" aria-hidden="true" />
-                <span className="sr-only">Local</span>
-              </dt>
-              <dd>{event.location}</dd>
-            </div>
+            {event.location && (
+              <div className="flex items-center gap-2">
+                <dt>
+                  <MapPin className="size-4 text-neon" aria-hidden="true" />
+                  <span className="sr-only">Local</span>
+                </dt>
+                <dd>{event.location}</dd>
+              </div>
+            )}
             <div className="flex items-center gap-2">
               <dt>
                 <UserRound className="size-4 text-neon" aria-hidden="true" />
