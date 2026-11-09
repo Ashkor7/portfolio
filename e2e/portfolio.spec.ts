@@ -88,6 +88,7 @@ test.describe('Home', () => {
         '/events/startup-weekend-pelotas-2026',
         '/events/hackathon-atlas-2026',
         '/events/tecnopuc-experience-2026',
+        '/events/hackathon-unisenac-2026',
       ]) {
         await page.goto(path)
         const overflow = await page.evaluate(
@@ -267,6 +268,7 @@ test.describe('Acessibilidade', () => {
     '/events/startup-weekend-pelotas-2026',
     '/events/hackathon-atlas-2026',
     '/events/tecnopuc-experience-2026',
+    '/events/hackathon-unisenac-2026',
   ]) {
     test(`sem violações graves de acessibilidade (axe) em ${path}`, async ({ page }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' })

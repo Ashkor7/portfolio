@@ -142,6 +142,38 @@ const tecnopucPhotos: EventPhoto[] = [
   ),
 ]
 
+const unisenac = (name: string, width: number, height: number, alt: string, position?: string) =>
+  photo('hackathon-unisenac-2026', name, width, height, alt, position)
+
+const unisenacPhotos: EventPhoto[] = [
+  unisenac(
+    'equipe',
+    1074,
+    1600,
+    'Equipe com as camisetas do hackathon e os crachás, posando na escada do UniSenac Pelotas',
+    '50% 30%',
+  ),
+  unisenac(
+    'desenvolvimento',
+    1080,
+    715,
+    'Integrante da equipe concentrado em frente ao computador durante o desenvolvimento',
+  ),
+  unisenac(
+    'selfie-equipe',
+    720,
+    1280,
+    'Selfie da equipe na sala de computadores do UniSenac, todos com as camisetas do hackathon',
+    '50% 40%',
+  ),
+  unisenac(
+    'conversa',
+    1095,
+    729,
+    'Leonardo, de jaqueta de couro, conversando com outros participantes no evento',
+  ),
+]
+
 // Do mais recente para o mais antigo.
 export const events: PortfolioEvent[] = [
   {
@@ -251,6 +283,44 @@ export const events: PortfolioEvent[] = [
     ],
     cover: startupWeekendPhotos[0]!,
     photos: startupWeekendPhotos,
+  },
+  {
+    id: 'EVT_004',
+    slug: 'hackathon-unisenac-2026',
+    name: 'Hackathon UniSenac Pelotas 2026',
+    category: 'Hackathon',
+    date: '20 JUN 2026',
+    location: 'UniSenac, Pelotas, RS',
+    organizer: 'UniSenac Pelotas',
+    role: 'Membro da equipe',
+    result: '4º lugar',
+    summary:
+      'Meu primeiro hackathon: 4º lugar com um sistema de acompanhamento de pacientes de UTI, criado para o desafio proposto pela Unimed.',
+    description: [
+      'Meu primeiro hackathon aconteceu em 20 de junho de 2026, no UniSenac Pelotas. O desafio era criar um sistema para a Unimed, e nossa equipe ficou em 4º lugar.',
+      'Fizemos um sistema de controle de UTI em que a IA acompanha os exames e indica se o estado de cada paciente é de melhora, estável ou piora. Ela não dá diagnóstico: a classificação serve de apoio, e a decisão continua sendo do médico.',
+    ],
+    highlights: [
+      '4º lugar no meu primeiro hackathon',
+      'Solução para o desafio proposto pela Unimed',
+      'IA que classifica o estado do paciente (melhora, estável ou piora), sempre validada pelo médico',
+    ],
+    project: {
+      name: 'Sistema de controle de UTI',
+      description:
+        'Sistema para acompanhar a evolução de pacientes de UTI a partir dos exames, com uma IA que indica o estado de cada paciente.',
+      problem:
+        'Facilitar o trabalho do médico: perceber mais rápido quando um leito de UTI pode ser liberado ou quando um paciente precisa de mais atenção.',
+      features: [
+        'Depois do exame, a enfermeira registra os dados no sistema, digitando ou anexando o arquivo',
+        'A IA lê os arquivos e as atualizações e atualiza o estado do paciente: melhora, estável ou piora',
+        'O médico analisa o estado indicado e confirma se ele se sustenta ou se são necessários novos exames',
+        'Com isso, a equipe pode liberar um leito mais rápido ou voltar a atenção para um paciente específico',
+      ],
+    },
+    links: [],
+    cover: unisenacPhotos[0]!,
+    photos: unisenacPhotos,
   },
 ]
 

@@ -94,7 +94,7 @@ export type EventCategory =
 
 export interface EventProject {
   name: string
-  tagline: string
+  tagline?: string
   description: string
   /** Problema que o projeto resolve. */
   problem?: string

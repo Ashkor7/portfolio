@@ -27,6 +27,14 @@ export const journey: JourneyEvent[] = [
     status: 'progress',
   },
   {
+    date: 'JUN 2026',
+    title: 'Primeiro hackathon — 4º lugar',
+    description:
+      'Hackathon no UniSenac Pelotas com desafio da Unimed: sistema de controle de UTI com IA que indica o estado do paciente.',
+    category: 'Hackathon',
+    status: 'done',
+  },
+  {
     date: 'OUT 2026',
     title: 'Game Library full-stack',
     description: 'Biblioteca de Jogos reconstruída com API Express, Prisma e PostgreSQL.',

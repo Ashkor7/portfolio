@@ -124,7 +124,9 @@ export function EventDetailPage() {
                   {num()} // PROJETO
                 </h2>
                 <p className="mt-3 font-display text-xl font-bold uppercase">{project.name}</p>
-                <p className="mt-1 font-mono text-xs text-industrial">{project.tagline}</p>
+                {project.tagline && (
+                  <p className="mt-1 font-mono text-xs text-industrial">{project.tagline}</p>
+                )}
                 <p className="mt-3 text-sm text-muted-foreground">{project.description}</p>
                 {project.problem && (
                   <>
