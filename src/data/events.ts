@@ -108,6 +108,40 @@ const startupWeekendPhotos: EventPhoto[] = [
   ),
 ]
 
+const tecnopuc = (name: string, width: number, height: number, alt: string, position?: string) =>
+  photo('tecnopuc-experience-2026', name, width, height, alt, position)
+
+const tecnopucPhotos: EventPhoto[] = [
+  tecnopuc(
+    'grupo-painel',
+    988,
+    619,
+    'Foto em grupo dos participantes em frente ao painel “TecnoPUC Experience 2026”',
+    '50% 100%',
+  ),
+  tecnopuc(
+    'pebolim',
+    900,
+    1600,
+    'Colegas de ADS jogando pebolim na sala de jogos do TecnoPUC, com um fliperama ao fundo',
+    '50% 55%',
+  ),
+  tecnopuc(
+    'sala-de-jogos',
+    720,
+    1280,
+    'Selfie na sala de jogos durante o evento, com colegas jogando pebolim ao fundo',
+    '50% 45%',
+  ),
+  tecnopuc(
+    'colegas-ads',
+    960,
+    1280,
+    'Selfie com os colegas de ADS sentados em um sofá, com os crachás do evento',
+    '50% 45%',
+  ),
+]
+
 // Do mais recente para o mais antigo.
 export const events: PortfolioEvent[] = [
   {
@@ -133,6 +167,26 @@ export const events: PortfolioEvent[] = [
     links: [],
     cover: atlasPhotos[0]!,
     photos: atlasPhotos,
+  },
+  {
+    id: 'EVT_003',
+    slug: 'tecnopuc-experience-2026',
+    name: 'TecnoPUC Experience 2026',
+    category: 'Conferência',
+    date: '22 OUT 2026',
+    location: 'PUCRS, Porto Alegre, RS',
+    organizer: 'TecnoPUC',
+    role: 'Participante',
+    summary:
+      'Evento de tecnologia no TecnoPUC, na PUCRS, com os colegas do curso de ADS: palestras, workshops, sala de jogos e visita a prédios do campus.',
+    description: [
+      'Fui ao TecnoPUC Experience 2026, em Porto Alegre, junto com meus colegas do curso de Análise e Desenvolvimento de Sistemas.',
+      'Assistimos a palestras e workshops, jogamos na sala de jogos e conhecemos alguns dos prédios da PUCRS.',
+    ],
+    highlights: ['Palestras', 'Workshops', 'Sala de jogos', 'Visita a prédios da PUCRS'],
+    links: [],
+    cover: tecnopucPhotos[0]!,
+    photos: tecnopucPhotos,
   },
   {
     id: 'EVT_001',

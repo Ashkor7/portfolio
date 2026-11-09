@@ -187,7 +187,7 @@ export function EventDetailPage() {
             )}
             <HudCard tone="terminal" className={cn(!project?.mvp && 'lg:col-span-2')}>
               <h2 className="font-mono text-xs tracking-widest text-terminal">
-                {num()} // RESULTADOS
+                {num()} // {event.result ? 'RESULTADOS' : 'DESTAQUES'}
               </h2>
               <ul className="mt-3 space-y-2 text-sm">
                 {event.highlights.map((h) => (

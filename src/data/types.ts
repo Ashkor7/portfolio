@@ -89,7 +89,8 @@ export interface EventPhoto {
   position?: string
 }
 
-export type EventCategory = 'Hackathon' | 'Competição' | 'Palestra' | 'Workshop' | 'Feira'
+export type EventCategory =
+  'Hackathon' | 'Competição' | 'Conferência' | 'Palestra' | 'Workshop' | 'Feira'
 
 export interface EventProject {
   name: string
@@ -124,7 +125,7 @@ export interface PortfolioEvent {
   result?: string
   summary: string
   description: string[]
-  /** Resultados concretos (prêmio, números de validação etc.). */
+  /** Resultados concretos (prêmio, números de validação etc.) ou, sem `result`, os destaques. */
   highlights: string[]
   /** O que o evento ensinou. */
   learnings?: string[]
