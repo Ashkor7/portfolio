@@ -292,13 +292,13 @@ export const events: PortfolioEvent[] = [
     date: '20 JUN 2026',
     location: 'UniSenac, Pelotas, RS',
     organizer: 'UniSenac Pelotas',
-    role: 'Membro da equipe',
+    role: 'Desenvolvedor',
     result: '4º lugar',
     summary:
-      'Meu primeiro hackathon: 4º lugar com um sistema de acompanhamento de pacientes de UTI, criado para o desafio proposto pela Unimed.',
+      'Meu primeiro hackathon: 4º lugar com o GuIA, sistema de acompanhamento de pacientes de UTI criado para o desafio da Unimed. Atuei como desenvolvedor.',
     description: [
       'Meu primeiro hackathon aconteceu em 20 de junho de 2026, no UniSenac Pelotas. O desafio era criar um sistema para a Unimed, e nossa equipe ficou em 4º lugar.',
-      'Fizemos um sistema de controle de UTI em que a IA acompanha os exames e indica se o estado de cada paciente é de melhora, estável ou piora. Ela não dá diagnóstico: a classificação serve de apoio, e a decisão continua sendo do médico.',
+      'Fizemos o GuIA, um sistema de controle de UTI em que a IA acompanha os exames e indica se o estado de cada paciente é de melhora, estável ou piora. Ela não dá diagnóstico: a classificação serve de apoio, e a decisão continua sendo do médico.',
     ],
     highlights: [
       '4º lugar no meu primeiro hackathon',
@@ -306,9 +306,9 @@ export const events: PortfolioEvent[] = [
       'IA que classifica o estado do paciente (melhora, estável ou piora), sempre validada pelo médico',
     ],
     project: {
-      name: 'Sistema de controle de UTI',
+      name: 'GuIA',
       description:
-        'Sistema para acompanhar a evolução de pacientes de UTI a partir dos exames, com uma IA que indica o estado de cada paciente.',
+        'Sistema de controle de UTI que acompanha a evolução dos pacientes a partir dos exames, com uma IA que indica o estado de cada paciente.',
       problem:
         'Facilitar o trabalho do médico: perceber mais rápido quando um leito de UTI pode ser liberado ou quando um paciente precisa de mais atenção.',
       features: [

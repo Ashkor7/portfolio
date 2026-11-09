@@ -30,7 +30,7 @@ export const journey: JourneyEvent[] = [
     date: 'JUN 2026',
     title: 'Primeiro hackathon — 4º lugar',
     description:
-      'Hackathon no UniSenac Pelotas com desafio da Unimed: sistema de controle de UTI com IA que indica o estado do paciente.',
+      'Hackathon no UniSenac Pelotas com desafio da Unimed: GuIA, sistema de controle de UTI com IA que indica o estado do paciente; atuei como dev.',
     category: 'Hackathon',
     status: 'done',
   },
