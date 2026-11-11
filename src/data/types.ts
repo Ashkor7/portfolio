@@ -45,6 +45,13 @@ export interface Project {
   cover: ProjectImage
   /** Capturas reais. Vazio enquanto não houver imagens reais publicadas. */
   screenshots: ProjectImage[]
+  /**
+   * Arte promocional/conceitual (não são capturas). Exibida em galeria com
+   * ampliação; o `alt` também serve de legenda.
+   */
+  artwork?: EventPhoto[]
+  /** Blocos de texto extras, exibidos antes de Problema/Objetivo/Arquitetura/Desafios. */
+  details?: { title: string; text: string }[]
   /** Repositório público. null quando não existe ou é privado. */
   github: string | null
   /** Explica a ausência do repositório (ex.: privado). */

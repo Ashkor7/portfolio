@@ -6,7 +6,16 @@ const controlClass =
   'clip-btn inline-flex size-11 items-center justify-center bg-surface/90 text-neon transition-colors hover:bg-neon hover:text-primary-foreground focus-visible:shadow-[inset_0_0_0_2px_var(--foreground)] focus-visible:outline-none'
 
 /** Grade de miniaturas com visualização ampliada acessível (Esc, setas, foco preso). */
-export function PhotoGallery({ photos, label }: { photos: EventPhoto[]; label: string }) {
+export function PhotoGallery({
+  photos,
+  label,
+  wide = false,
+}: {
+  photos: EventPhoto[]
+  label: string
+  /** Miniaturas em 16:9 sem corte (artes com texto), em vez do recorte 4:3 das fotos. */
+  wide?: boolean
+}) {
   const [open, setOpen] = useState<number | null>(null)
   const thumbs = useRef<Array<HTMLButtonElement | null>>([])
   const dialog = useRef<HTMLDivElement>(null)
@@ -63,7 +72,14 @@ export function PhotoGallery({ photos, label }: { photos: EventPhoto[]; label: s
 
   return (
     <>
-      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label={label}>
+      <ul
+        className={
+          wide
+            ? 'grid gap-3 sm:grid-cols-2 lg:grid-cols-3'
+            : 'grid grid-cols-2 gap-3 sm:grid-cols-3'
+        }
+        aria-label={label}
+      >
         {photos.map((p, i) => (
           <li key={p.src}>
             <button
@@ -84,7 +100,7 @@ export function PhotoGallery({ photos, label }: { photos: EventPhoto[]; label: s
                   loading="lazy"
                   decoding="async"
                   style={{ objectPosition: p.position }}
-                  className="aspect-[4/3] w-full object-cover opacity-85 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
+                  className={`${wide ? 'aspect-video' : 'aspect-[4/3]'} w-full object-cover opacity-85 transition duration-500 group-hover:scale-105 group-hover:opacity-100`}
                 />
               </span>
             </button>

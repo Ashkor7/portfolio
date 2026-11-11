@@ -45,7 +45,7 @@ export const journey: JourneyEvent[] = [
     date: 'OUT 2026',
     title: 'RPG Isekai em desenvolvimento',
     description:
-      'Jogo em Godot 4; o primeiro marco jogável (movimentação, colisões e câmera) já está pronto.',
+      'RPG em Godot 4; o protótipo M4.4 já tem coleta, fabricação, profissões, horta, culinária e a Vila do Riacho.',
     category: 'Projeto',
     status: 'progress',
   },

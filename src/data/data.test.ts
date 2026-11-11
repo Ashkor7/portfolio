@@ -6,7 +6,9 @@ import { person, pendingValidation, socialLinks } from '@/config/site'
 
 // Arquivos em public/, para conferir se as fotos dos eventos existem.
 const publicFiles = new Set(
-  Object.keys(import.meta.glob('/public/events/**/*.webp')).map((p) => p.replace(/^\/public/, '')),
+  Object.keys(import.meta.glob(['/public/events/**/*.webp', '/public/projects/**/*.webp'])).map(
+    (p) => p.replace(/^\/public/, ''),
+  ),
 )
 
 describe('dados dos projetos', () => {
@@ -34,6 +36,20 @@ describe('dados dos projetos', () => {
     expect(rpg.tech).toEqual(expect.arrayContaining(['Godot 4', 'GDScript']))
     expect(rpg.tech).not.toContain('Python')
     expect(rpg.tech).not.toContain('C')
+  })
+
+  it('artes promocionais existem, são ilustrativas e têm descrição', () => {
+    for (const p of projects) {
+      if (!p.artwork) continue
+      expect(p.cover.illustrative).toBe(true)
+      for (const art of p.artwork) {
+        expect(art.alt.length).toBeGreaterThan(20)
+        for (const file of [art.src, art.thumb]) expect(publicFiles.has(file), file).toBe(true)
+      }
+    }
+    const rpg = getProjectBySlug('rpg-isekai')!
+    expect(publicFiles.has(rpg.cover.src)).toBe(true)
+    expect(rpg.artwork).toHaveLength(5)
   })
 
   it('nenhum link é genérico (página inicial do GitHub/LinkedIn)', () => {

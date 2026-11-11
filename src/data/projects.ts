@@ -6,7 +6,9 @@ import type { Project, ProjectCategory } from './types.ts'
  * Fontes verificadas em 08/11/2026:
  * - Game Library: README, package.json e docs/CONTEXTO_DO_PROJETO.md de
  *   https://github.com/Ashkor7/biblioteca-jogos
- * - RPG Isekai: README e docs/technical-decisions.md do repositório (privado) Ashkor7/rpg-isekai
+ * - RPG Isekai (verificado em 11/11/2026, marco M4.4): README, docs/ e
+ *   work/portfolio-banners/2026-11-11/manifest.json do repositório (privado) Ashkor7/rpg-isekai.
+ *   Capa e artes são ilustrações promocionais geradas com IA → `illustrative: true`.
  * - Personal Agenda: nenhum repositório ou código encontrado → Planned
  * - Engineering Lab: nenhum projeto publicado → Concept
  *
@@ -141,50 +143,132 @@ export const projects: Project[] = [
     slug: 'rpg-isekai',
     name: 'RPG Isekai',
     summary:
-      'Protótipo de RPG 2D top-down em Godot 4 e GDScript: movimentação, colisões e câmera no primeiro mapa de teste.',
+      'RPG 2D de fantasia medieval em pixel art, feito na Godot 4: um nobre caído recomeça a vida explorando ruínas, cultivando, cozinhando e evoluindo em profissões.',
     description:
-      'Jogo de RPG 2D de exploração em desenvolvimento na Godot Engine. O marco atual (M1) é um protótipo jogável com movimentação em quatro direções, colisões, câmera e o primeiro personagem animado.',
+      'RPG isekai top-down em desenvolvimento na Godot Engine 4.7.2 com GDScript. O jogador controla o Nobre Caído, um jovem nobre que perdeu a posição e precisa recomeçar do zero em um mundo medieval de fantasia. O protótipo atual (M4.4) já é jogável da Clareira do Altar em Ruínas até a Vila do Riacho, com coleta, fabricação, profissões, horta, culinária, uma primeira missão, ciclo de dias e salvamento.',
     categories: ['Software', 'Experimental'],
     status: 'Development',
-    statusNote: 'Protótipo M1',
+    statusNote: 'Protótipo M4.4 jogável',
     tech: ['Godot 4', 'GDScript', 'Pixel Art'],
     techDetails: [
-      { group: 'Engine', items: ['Godot 4.7.2 Stable'] },
+      { group: 'Engine', items: ['Godot 4.7.2 Stable', 'Renderizador GL Compatibility'] },
       { group: 'Linguagem', items: ['GDScript'] },
       {
         group: 'Arte',
-        items: ['Pixel art 640×360, grid 16×16', 'Spritesheet animada do personagem'],
+        items: [
+          'Pixel art 640×360, grid 16×16',
+          'Sprites em quatro direções (parado e caminhando)',
+          'Terreno e casas da vila gerados por código',
+        ],
       },
-      { group: 'Qualidade', items: ['Smoke test headless da Godot'] },
+      {
+        group: 'Dados',
+        items: ['Resources com IDs estáveis', 'Save JSON versionado (v7) com backup'],
+      },
+      { group: 'Qualidade', items: ['Testes headless da Godot a cada marco', 'Capturas de QA'] },
     ],
     cover: {
-      src: '/projects/rpg-isekai.jpg',
-      alt: 'Ilustração conceitual de um portal de fantasia em pixel art',
+      src: '/projects/rpg-isekai/capa.webp',
+      alt: 'Arte promocional do RPG Isekai: o Nobre Caído, de cabelo ruivo e casaco nobre surrado, sobre ruínas diante de uma vila medieval com rio, ponte e um castelo ao fundo',
       illustrative: true,
     },
     screenshots: [],
+    artwork: [
+      {
+        src: '/projects/rpg-isekai/um-nobre-caido.webp',
+        thumb: '/projects/rpg-isekai/um-nobre-caido-thumb.webp',
+        alt: '“Um nobre caído. Uma nova vida.” O protagonista, entre pilares em ruínas, olha para a vila ao amanhecer. Sobreviva, aprenda, reconstrua.',
+        width: 1600,
+        height: 900,
+      },
+      {
+        src: '/projects/rpg-isekai/construa-seu-caminho.webp',
+        thumb: '/projects/rpg-isekai/construa-seu-caminho-thumb.webp',
+        alt: '“Construa seu próprio caminho”: exploração das ruínas, agricultura na horta da vila, culinária no fogareiro e profissões.',
+        width: 1600,
+        height: 900,
+      },
+      {
+        src: '/projects/rpg-isekai/evolua-do-seu-jeito.webp',
+        thumb: '/projects/rpg-isekai/evolua-do-seu-jeito-thumb.webp',
+        alt: '“Evolua do seu jeito”: especializações independentes de Coleta, Ferraria, Alquimia, Agricultura, Culinária e Combate (esta última planejada).',
+        width: 1600,
+        height: 900,
+      },
+      {
+        src: '/projects/rpg-isekai/um-mundo-para-chamar-de-seu.webp',
+        thumb: '/projects/rpg-isekai/um-mundo-para-chamar-de-seu-thumb.webp',
+        alt: 'Visão do projeto, “Um mundo para chamar de seu”: terra própria, pesca, relacionamentos e familiares, com uma cidade medieval ao fundo. Conteúdo planejado.',
+        width: 1600,
+        height: 900,
+      },
+      {
+        src: '/projects/rpg-isekai/desafie-o-desconhecido.webp',
+        thumb: '/projects/rpg-isekai/desafie-o-desconhecido-thumb.webp',
+        alt: 'Visão do projeto, “Desafie o desconhecido”: o protagonista, de espada em punho, enfrenta goblins, um slime, um esqueleto e um guardião de pedra numa dungeon. Conteúdo planejado.',
+        width: 1600,
+        height: 900,
+      },
+    ],
+    details: [
+      {
+        title: 'Engine',
+        text: 'Godot 4.7.2 Stable com GDScript e renderizador GL Compatibility, para desktop Windows e Linux. Resolução interna fixa de 640×360 com grade de 16 px. Cada sistema (vida, mochila, fabricação, profissões, relógio) é um componente próprio ligado por sinais, sem autoloads globais.',
+      },
+      {
+        title: 'Ideia e história',
+        text: 'Um RPG isekai de recomeço. O protagonista, o Nobre Caído (cabelo ruivo, olhos azuis e um casaco nobre preto já rasgado), começa sem nada na Clareira do Altar em Ruínas e precisa sobreviver, aprender ofícios com quem encontra pelo caminho e reconstruir a própria vida. O lema do projeto resume a proposta: “Sobreviva. Aprenda. Reconstrua.”',
+      },
+      {
+        title: 'Mecânicas pretendidas',
+        text: 'Progressão pela prática, sem classes: cada especialização evolui com o que o jogador faz, e o instrutor viajante libera níveis mais altos com treinamento pago. A visão do projeto acrescenta combate como sexta especialização, dungeons com monstros, terra própria, pesca, relacionamentos com os moradores, familiares e uma cidade medieval maior.',
+      },
+      {
+        title: 'Mundo e interações',
+        text: 'Duas regiões do mesmo mundo: a clareira das ruínas, com rio, trilhas e o instrutor, e a Vila do Riacho, com seis casas, lavouras, ponte, cercados e animais. Seis moradores (fazendeiro, mãe, filha, professora, cuidador e guerreiro) circulam pela vila. O jogador coleta (E), examina inscrições (F), cuida da horta (G), fabrica e cozinha (C), corta lenha com o machado (Espaço), treina com o instrutor (T) e acompanha pedidos no diário (Q).',
+      },
+    ],
     github: null,
     githubNote: 'Repositório privado no momento.',
     demo: null,
     problem:
-      'Aprender desenvolvimento de jogos na prática: organização de cenas, física 2D, colisões e animação de personagens.',
-    goal: 'Construir, em marcos pequenos e validados, um RPG 2D de exploração com arte em pixel art.',
+      'Aprender desenvolvimento de jogos na prática, com um projeto grande o bastante para exigir arquitetura: sistemas que conversam entre si, dados persistidos e conteúdo crescendo marco a marco sem quebrar o que já funcionava.',
+    goal: 'Construir, em marcos pequenos e validados, um RPG 2D de vida e aventura em pixel art, em que o jogador escolhe o próprio caminho entre ofícios, exploração e, no futuro, combate.',
     features: [
-      { label: 'Movimentação top-down em quatro direções (WASD e setas)', state: 'done' },
-      { label: 'Colisões com casa, lago, cerca, rochas e limites do mapa', state: 'done' },
-      { label: 'Câmera que segue o jogador limitada ao mapa', state: 'done' },
-      { label: 'Resolução lógica fixa de 640×360', state: 'done' },
-      { label: 'Spritesheet animada do personagem com fallback seguro', state: 'done' },
-      { label: 'Mapa com TileMapLayer e arte definitiva', state: 'planned' },
-      { label: 'Combate, inventário e NPCs', state: 'planned' },
-      { label: 'Sistema de salvamento', state: 'planned' },
+      { label: 'Movimentação em quatro direções e corrida que consome fôlego', state: 'done' },
+      { label: 'Vida, dano por espinhos e cura com cataplasma', state: 'done' },
+      { label: 'Coleta de madeira, pedra e ervas; mochila com 8 espaços', state: 'done' },
+      { label: 'Fabricação de machado de pedra e cataplasma', state: 'done' },
+      {
+        label:
+          'Cinco especializações com XP e nível próprios: Coleta, Ferraria, Alquimia, Agricultura e Culinária',
+        state: 'done',
+      },
+      {
+        label: 'Instrutor viajante: treinamento pago amplia o limite de nível de 5 para 10',
+        state: 'done',
+      },
+      { label: 'Machado equipável para extrair madeira de troncos', state: 'done' },
+      { label: 'Primeira missão, “Preparativos para a travessia”, com diário', state: 'done' },
+      { label: 'Horta: preparar, plantar e colher, com replantio por sementes', state: 'done' },
+      { label: 'Culinária no fogareiro: Chá da Clareira e Caldo do Recomeço', state: 'done' },
+      { label: 'Relógio do mundo com dias e iluminação gradual', state: 'done' },
+      { label: 'Vila do Riacho com seis moradores animados e animais', state: 'done' },
+      { label: 'Salvamento manual com backup e migração de saves antigos', state: 'done' },
+      { label: 'Combate como sexta especialização', state: 'planned' },
+      { label: 'Dungeons e monstros', state: 'planned' },
+      { label: 'Terra própria e pesca', state: 'planned' },
+      { label: 'Relacionamentos com os moradores e familiares', state: 'planned' },
+      { label: 'Cidade medieval ampliada', state: 'planned' },
+      { label: 'Estações do ano e rega na agricultura', state: 'planned' },
+      { label: 'Builds exportadas e validadas para Windows e Linux', state: 'planned' },
     ],
     architecture:
-      'Cena Main (Node2D) com o mundo de teste e o jogador instanciados. O jogador é um CharacterBody2D com CollisionShape2D e Camera2D; as colisões do mundo são StaticBody2D criadas na inicialização. Scripts organizados por domínio (player/, world/).',
+      'Cena Main com as regiões do mundo e o jogador (CharacterBody2D com câmera limitada por região). Vida, mochila, fabricação, profissões e relógio são componentes desacoplados que se comunicam por sinais; itens, receitas e profissões são Resources com IDs estáveis. O save é um JSON versionado (v7) com backup e migração das versões 1 a 6.',
     challenges:
-      'Manter a física top-down previsível sem diagonais, limitar a câmera ao mapa e introduzir animação sem alterar colisões já validadas.',
+      'Fabricação atômica (nada é consumido se o resultado não couber na mochila), manter saves antigos compatíveis a cada sistema novo, pausar relógio e horta junto com os menus sem mudar o balanceamento e alinhar as colisões da arte nova à física já validada.',
     currentState:
-      'Protótipo M1 jogável. Arte do mapa ainda provisória; combate, inventário e salvamento ainda não foram implementados.',
+      'Protótipo M4.4 jogável nas duas regiões, com testes automatizados a cada marco. Combate, dungeons e a expansão do mundo ainda não foram implementados, e as builds exportadas ainda não foram validadas.',
   },
   {
     id: 'ID_004',

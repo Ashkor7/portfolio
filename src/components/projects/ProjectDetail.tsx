@@ -8,6 +8,7 @@ import { HudCard } from '@/components/ui/HudCard'
 import { StatusBadge } from '@/components/ui/StatusBadge'
 import { statusMeta } from '@/data/status'
 import { GithubIcon } from '@/components/icons/BrandIcons'
+import { PhotoGallery } from '@/components/events/PhotoGallery'
 import { ProjectImage } from './ProjectImage'
 
 interface Neighbor {
@@ -31,6 +32,7 @@ export function ProjectDetail({
   extra?: ReactNode
 }) {
   const blocks: Array<[string, string]> = [
+    ...(project.details ?? []).map((d): [string, string] => [d.title, d.text]),
     ['Problema', project.problem],
     ['Objetivo', project.goal],
     ['Arquitetura', project.architecture],
@@ -38,6 +40,7 @@ export function ProjectDetail({
   ]
   const done = project.features.filter((f) => f.state === 'done')
   const planned = project.features.filter((f) => f.state === 'planned')
+  const num = (n: number) => String(n).padStart(2, '0')
 
   return (
     <article aria-labelledby="project-title">
@@ -97,16 +100,18 @@ export function ProjectDetail({
         {blocks.map(([title, text], i) => (
           <HudCard key={title} tone={i % 2 ? 'cyber' : 'neon'}>
             <h2 className="font-mono text-xs tracking-widest text-neon">
-              0{i + 1} // {title.toUpperCase()}
+              {num(i + 1)} // {title.toUpperCase()}
             </h2>
-            <p className="mt-3 text-sm text-muted-foreground">{text}</p>
+            <p className="mt-3 text-sm whitespace-pre-line text-muted-foreground">{text}</p>
           </HudCard>
         ))}
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[1.4fr_1fr]">
         <HudCard tone="terminal">
-          <h2 className="font-mono text-xs tracking-widest text-terminal">05 // FUNCIONALIDADES</h2>
+          <h2 className="font-mono text-xs tracking-widest text-terminal">
+            {num(blocks.length + 1)} // FUNCIONALIDADES
+          </h2>
           {done.length > 0 && (
             <ul className="mt-4 space-y-2 text-sm" aria-label="Implementadas">
               {done.map((f) => (
@@ -144,7 +149,9 @@ export function ProjectDetail({
         </HudCard>
 
         <HudCard tone="industrial">
-          <h2 className="font-mono text-xs tracking-widest text-industrial">06 // STATUS ATUAL</h2>
+          <h2 className="font-mono text-xs tracking-widest text-industrial">
+            {num(blocks.length + 2)} // STATUS ATUAL
+          </h2>
           <p className="mt-3 text-sm">
             <span className="font-mono text-neon">{statusMeta[project.status].pt}</span>
             {project.statusNote && (
@@ -182,6 +189,23 @@ export function ProjectDetail({
               />
             ))}
           </div>
+        </section>
+      )}
+
+      {project.artwork && project.artwork.length > 0 && (
+        <section className="mt-10" aria-labelledby="artwork-title">
+          <h2 id="artwork-title" className="font-mono text-xs tracking-widest text-neon">
+            // ARTE PROMOCIONAL
+          </h2>
+          <p className="mt-2 mb-4 font-mono text-[11px] text-muted-foreground">
+            // Ilustrações geradas com IA a partir do protagonista e dos cenários do jogo — não são
+            capturas de tela.
+          </p>
+          <PhotoGallery
+            photos={project.artwork}
+            label={`Arte promocional do ${project.name}`}
+            wide
+          />
         </section>
       )}
 

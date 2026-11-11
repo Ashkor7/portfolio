@@ -61,7 +61,7 @@ Ver `docs/ARQUITETURA.md`. Resumo: conteúdo em `src/data` + `src/config`; seç�
 - Original: <https://screenshot-to-lovely-web-84.lovable.app/>; capturas em `docs/reference/original/`
 - GitHub: <https://github.com/Ashkor7>
 - Game Library: <https://github.com/Ashkor7/biblioteca-jogos> (React, Express, PostgreSQL, Prisma — **não** MySQL)
-- RPG Isekai: repositório privado `Ashkor7/rpg-isekai` (Godot 4.7.2, GDScript, marco M1)
+- RPG Isekai: repositório privado `Ashkor7/rpg-isekai` (Godot 4.7.2, GDScript, marco M4.4; artes em `public/projects/rpg-isekai/`)
 - LinkedIn (confirmado manualmente): <https://www.linkedin.com/in/leonardo-ribeiro-401b023a9/>
 
 ## Critérios de teste
