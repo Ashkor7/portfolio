@@ -87,6 +87,7 @@ test.describe('Home', () => {
         '/projects/game-library',
         '/events/startup-weekend-pelotas-2026',
         '/events/hackathon-atlas-2026',
+        '/events/devfest-pelotas-2026',
         '/events/tecnopuc-experience-2026',
         '/events/hackathon-unisenac-2026',
       ]) {
@@ -168,8 +169,8 @@ test.describe('Eventos', () => {
     const more = page.getByRole('button', { name: /More events/ })
     await expect(more).toHaveAttribute('aria-expanded', 'false')
     await more.click()
-    await expect(cards).toHaveCount(4)
-    await expect(cards.nth(2)).toContainText('TecnoPUC')
+    await expect(cards).toHaveCount(5)
+    await expect(cards.nth(2)).toContainText('DevFest')
     const less = page.getByRole('button', { name: /Show less/ })
     await expect(less).toHaveAttribute('aria-expanded', 'true')
     await less.click()
@@ -287,6 +288,7 @@ test.describe('Acessibilidade', () => {
     '/projects/game-library',
     '/events/startup-weekend-pelotas-2026',
     '/events/hackathon-atlas-2026',
+    '/events/devfest-pelotas-2026',
     '/events/tecnopuc-experience-2026',
     '/events/hackathon-unisenac-2026',
   ]) {

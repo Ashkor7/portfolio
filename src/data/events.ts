@@ -174,8 +174,78 @@ const unisenacPhotos: EventPhoto[] = [
   ),
 ]
 
+const devfest = (name: string, width: number, height: number, alt: string, position?: string) =>
+  photo('devfest-pelotas-2026', name, width, height, alt, position)
+
+const devfestPhotos: EventPhoto[] = [
+  devfest(
+    'grupo-morphyk',
+    1600,
+    1068,
+    'Leonardo, à esquerda, com três colegas e os crachás do DevFest em frente a um painel de LED',
+  ),
+  devfest(
+    'palestra',
+    1600,
+    1204,
+    'Plateia lotada assistindo a uma palestra no Parque Tecnológico de Pelotas, com o slide projetado ao fundo',
+  ),
+  devfest(
+    'selfie-grupo',
+    960,
+    1280,
+    'Selfie de Leonardo com três colegas, todos com os crachás e cordões do DevFest',
+    '50% 45%',
+  ),
+  devfest(
+    'plateia',
+    1504,
+    1000,
+    'Leonardo, de suéter bordô, e colegas assistindo em pé a uma palestra',
+  ),
+  devfest(
+    'selfie-colegas',
+    1200,
+    1599,
+    'Selfie de dois participantes com os cordões do Google Developer Group durante o evento',
+    '50% 45%',
+  ),
+  devfest(
+    'convivencia',
+    1504,
+    1000,
+    'Participantes conversando no espaço de convivência do evento',
+  ),
+]
+
 // Do mais recente para o mais antigo.
 export const events: PortfolioEvent[] = [
+  {
+    id: 'EVT_005',
+    slug: 'devfest-pelotas-2026',
+    name: 'DevFest Pelotas 2026',
+    category: 'Conferência',
+    date: '07 NOV 2026',
+    location: 'Parque Tecnológico de Pelotas, Pelotas, RS',
+    organizer: 'Google Developer Group Pelotas',
+    role: 'Participante',
+    summary:
+      'DevFest organizado pelo GDG Pelotas no Parque Tecnológico, com palestras sobre agentes com ADK no Gemini, cibersegurança, game dev, Firebase e sistemas multiagente na nuvem com Gemini.',
+    description: [
+      'Participei do DevFest Pelotas em 7 de novembro de 2026, no Parque Tecnológico de Pelotas, organizado pelo Google Developer Group Pelotas.',
+      'Assistimos a diversas palestras, entre elas agentes com ADK no Gemini, cibersegurança, game dev, Firebase e sistemas multiagente na nuvem com Gemini.',
+    ],
+    highlights: [
+      'Agentes com ADK no Gemini',
+      'Cibersegurança',
+      'Game dev',
+      'Firebase',
+      'Multi-agent cloud systems com Gemini',
+    ],
+    links: [],
+    cover: devfestPhotos[0]!,
+    photos: devfestPhotos,
+  },
   {
     id: 'EVT_002',
     slug: 'hackathon-atlas-2026',
