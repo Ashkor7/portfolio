@@ -227,7 +227,7 @@ const talentcampPhotos: EventPhoto[] = [
     960,
     1280,
     'Leonardo apresentando a Bússola em pé, com a plataforma projetada ao fundo e o banner do TalentCamp ao lado',
-    '50% 30%',
+    '50% 5%',
   ),
   talentcamp(
     'selfie-colegas',
