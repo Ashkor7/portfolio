@@ -354,7 +354,17 @@ export const events: PortfolioEvent[] = [
     },
     cover: talentcampPhotos[0]!,
     photos: talentcampPhotos,
-    projectGallery: { title: 'Fotos da Bússola', photos: bussolaPhotos },
+    projectGallery: {
+      title: 'Fotos da Bússola',
+      photos: bussolaPhotos,
+      video: {
+        src: '/events/talentcamp-2026/bussola-demo.mp4',
+        poster: '/events/talentcamp-2026/bussola-01-capa.webp',
+        width: 1920,
+        height: 1080,
+        caption: 'Vídeo de demonstração da Bússola, usado na apresentação (2 min, sem áudio)',
+      },
+    },
   },
   {
     id: 'EVT_005',

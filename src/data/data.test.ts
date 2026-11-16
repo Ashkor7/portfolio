@@ -11,6 +11,7 @@ const publicFiles = new Set(
       '/public/events/**/*.webp',
       '/public/events/**/*.pdf',
       '/public/events/**/*.jpg',
+      '/public/events/**/*.mp4',
       '/public/projects/**/*.webp',
     ]),
   ).map((p) => p.replace(/^\/public/, '')),
@@ -80,6 +81,9 @@ describe('dados dos projetos', () => {
         if (l.kind === 'linkedin') expect(l.href).toMatch(/linkedin\.com\/(feed\/update|posts)\//)
         if (l.kind === 'instagram') expect(l.href).toMatch(/instagram\.com\/p\//)
       }
+      const video = e.projectGallery?.video
+      if (video)
+        for (const file of [video.src, video.poster]) expect(publicFiles.has(file), file).toBe(true)
       for (const p of e.projectGallery?.photos ?? []) {
         expect(p.alt.length).toBeGreaterThan(10)
         for (const file of [p.src, p.thumb]) expect(publicFiles.has(file), file).toBe(true)

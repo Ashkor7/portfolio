@@ -115,6 +115,17 @@ export interface EventProject {
   url?: string
 }
 
+/** Vídeo (MP4/H.264) em `public/events/<slug>/`. */
+export interface EventVideo {
+  src: string
+  /** Imagem exibida antes de dar play. */
+  poster: string
+  width: number
+  height: number
+  /** Legenda curta exibida abaixo do vídeo. */
+  caption: string
+}
+
 /** Certificado emitido pela organização. Copie os dados exatamente como estão no documento. */
 export interface EventCertificate {
   /** Nome do certificado, quando não for o genérico (ex.: "Certificado de AI builder"). */
@@ -162,5 +173,5 @@ export interface PortfolioEvent {
   /** Fotos tiradas no evento. */
   photos: EventPhoto[]
   /** Telas do projeto, exibidas numa galeria própria abaixo das fotos do evento. */
-  projectGallery?: { title: string; photos: EventPhoto[] }
+  projectGallery?: { title: string; photos: EventPhoto[]; video?: EventVideo }
 }

@@ -306,6 +306,25 @@ export function EventDetailPage() {
                 {num()} // {event.projectGallery.title} — {event.projectGallery.photos.length}{' '}
                 IMAGENS
               </h2>
+              {event.projectGallery.video && (
+                <figure className="mt-4">
+                  <video
+                    controls
+                    preload="none"
+                    playsInline
+                    poster={event.projectGallery.video.poster}
+                    width={event.projectGallery.video.width}
+                    height={event.projectGallery.video.height}
+                    aria-label={event.projectGallery.video.caption}
+                    className="clip-hud aspect-video w-full border border-border bg-black"
+                  >
+                    <source src={event.projectGallery.video.src} type="video/mp4" />
+                  </video>
+                  <figcaption className="mt-2 font-mono text-xs text-muted-foreground">
+                    {event.projectGallery.video.caption}
+                  </figcaption>
+                </figure>
+              )}
               <div className="mt-4">
                 <PhotoGallery
                   wide

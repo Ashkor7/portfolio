@@ -221,6 +221,12 @@ test.describe('Eventos', () => {
     ).toHaveAttribute('href', '/events/talentcamp-2026/certificado.jpg')
     await expect(page.getByRole('heading', { name: /FOTOS DO EVENTO — 4 FOTOS/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: /Fotos da Bússola — 9/i })).toBeVisible()
+    await expect(page.locator('video source')).toHaveAttribute(
+      'src',
+      '/events/talentcamp-2026/bussola-demo.mp4',
+    )
+    const video = await page.request.get('/events/talentcamp-2026/bussola-demo.mp4')
+    expect(video.ok()).toBe(true)
     await page.goto('/events/nao-existe')
     await expect(page.getByText(/EVENT_NOT_FOUND/)).toBeVisible()
   })
