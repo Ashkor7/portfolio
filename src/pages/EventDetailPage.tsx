@@ -11,6 +11,8 @@ import { usePageMeta } from '@/hooks/usePageMeta'
 import { cn } from '@/utils/cn'
 import { NotFoundContent } from './NotFoundPage'
 
+const isPdf = (file: string) => file.toLowerCase().endsWith('.pdf')
+
 export function EventDetailPage() {
   const { slug } = useParams()
   const event = getEventBySlug(slug)
@@ -240,6 +242,11 @@ export function EventDetailPage() {
               <h2 className="font-mono text-xs tracking-widest text-neon">
                 {num()} // CERTIFICADO
               </h2>
+              {event.certificate.title && (
+                <p className="mt-3 font-display text-lg font-bold uppercase">
+                  {event.certificate.title}
+                </p>
+              )}
               <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 font-mono text-xs">
                 {(
                   [
@@ -260,11 +267,11 @@ export function EventDetailPage() {
               <div className="mt-5 flex flex-wrap gap-3">
                 <ButtonAnchor
                   variant="ghost"
-                  href={event.certificate.pdf}
-                  aria-label={`Ver certificado do ${event.name} em PDF (abre em nova aba)`}
+                  href={event.certificate.file}
+                  aria-label={`Ver certificado do ${event.name}${isPdf(event.certificate.file) ? ' em PDF' : ''} (abre em nova aba)`}
                 >
                   <FileText className="size-4" aria-hidden="true" />
-                  Ver certificado (PDF)
+                  Ver certificado{isPdf(event.certificate.file) && ' (PDF)'}
                 </ButtonAnchor>
                 {event.certificate.verify?.verified && (
                   <ButtonAnchor
@@ -282,12 +289,32 @@ export function EventDetailPage() {
 
           <section aria-labelledby="event-gallery-title" className="mt-12">
             <h2 id="event-gallery-title" className="font-mono text-xs tracking-widest text-neon">
-              {num()} // GALERIA — {event.photos.length} FOTOS
+              {num()} // {event.projectGallery ? 'FOTOS DO EVENTO' : 'GALERIA'} —{' '}
+              {event.photos.length} FOTOS
             </h2>
             <div className="mt-4">
               <PhotoGallery photos={event.photos} label={`Fotos do ${event.name}`} />
             </div>
           </section>
+
+          {event.projectGallery && (
+            <section aria-labelledby="project-gallery-title" className="mt-12">
+              <h2
+                id="project-gallery-title"
+                className="font-mono text-xs tracking-widest text-cyber-soft uppercase"
+              >
+                {num()} // {event.projectGallery.title} — {event.projectGallery.photos.length}{' '}
+                IMAGENS
+              </h2>
+              <div className="mt-4">
+                <PhotoGallery
+                  wide
+                  photos={event.projectGallery.photos}
+                  label={event.projectGallery.title}
+                />
+              </div>
+            </section>
+          )}
         </article>
       ) : (
         <NotFoundContent

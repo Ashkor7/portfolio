@@ -10,6 +10,7 @@ const publicFiles = new Set(
     import.meta.glob([
       '/public/events/**/*.webp',
       '/public/events/**/*.pdf',
+      '/public/events/**/*.jpg',
       '/public/projects/**/*.webp',
     ]),
   ).map((p) => p.replace(/^\/public/, '')),
@@ -79,9 +80,13 @@ describe('dados dos projetos', () => {
         if (l.kind === 'linkedin') expect(l.href).toMatch(/linkedin\.com\/(feed\/update|posts)\//)
         if (l.kind === 'instagram') expect(l.href).toMatch(/instagram\.com\/p\//)
       }
+      for (const p of e.projectGallery?.photos ?? []) {
+        expect(p.alt.length).toBeGreaterThan(10)
+        for (const file of [p.src, p.thumb]) expect(publicFiles.has(file), file).toBe(true)
+      }
       if (e.certificate) {
-        expect(e.certificate.pdf.startsWith(`/events/${e.slug}/`)).toBe(true)
-        expect(publicFiles.has(e.certificate.pdf), e.certificate.pdf).toBe(true)
+        expect(e.certificate.file.startsWith(`/events/${e.slug}/`)).toBe(true)
+        expect(publicFiles.has(e.certificate.file), e.certificate.file).toBe(true)
       }
     }
   })

@@ -218,8 +218,144 @@ const devfestPhotos: EventPhoto[] = [
   ),
 ]
 
+const talentcamp = (name: string, width: number, height: number, alt: string, position?: string) =>
+  photo('talentcamp-2026', name, width, height, alt, position)
+
+const talentcampPhotos: EventPhoto[] = [
+  talentcamp(
+    'apresentacao',
+    960,
+    1280,
+    'Leonardo apresentando a Bússola em pé, com a plataforma projetada ao fundo e o banner do TalentCamp ao lado',
+    '50% 30%',
+  ),
+  talentcamp(
+    'selfie-colegas',
+    1600,
+    900,
+    'Selfie com colegas no espaço do evento; Leonardo, ao fundo, sentado em um pufe azul',
+  ),
+  talentcamp(
+    'apresentacao-gesto',
+    422,
+    757,
+    'Leonardo gesticulando durante a apresentação, com um participante sentado à esquerda',
+    '50% 40%',
+  ),
+  talentcamp(
+    'apresentacao-bracos-cruzados',
+    425,
+    755,
+    'Leonardo de braços cruzados ao lado da tela com a Bússola projetada',
+    '50% 40%',
+  ),
+]
+
+const bussolaPhotos: EventPhoto[] = [
+  talentcamp('bussola-01-capa', 1600, 900, 'Capa da Bússola: “Seu primeiro mês com direção”'),
+  talentcamp(
+    'bussola-02-minha-jornada',
+    1600,
+    900,
+    'Minha jornada: os próximos passos, o progresso e a primeira entrega',
+  ),
+  talentcamp(
+    'bussola-03-trilha',
+    1600,
+    900,
+    'Trilha por etapas: cada item com dono, e o conteúdo vencido sinalizado',
+  ),
+  talentcamp(
+    'bussola-04-resposta-com-fonte',
+    1600,
+    900,
+    'Resposta com a fonte, a data de revisão e quem pode ajudar',
+  ),
+  talentcamp(
+    'bussola-05-ferramentas',
+    1600,
+    900,
+    'Ferramentas: o que já está liberado e o que precisa de pedido',
+  ),
+  talentcamp(
+    'bussola-06-painel-gestor',
+    1600,
+    900,
+    'Painel do gestor: progresso do time e onde oferecer apoio',
+  ),
+  talentcamp(
+    'bussola-07-fila-de-lacunas',
+    1600,
+    900,
+    'A dúvida respondida pelo RH volta para todos, com a fonte',
+  ),
+  talentcamp(
+    'bussola-08-visao-rh',
+    1600,
+    900,
+    'Visão do RH: todas as pessoas em integração, por time',
+  ),
+  talentcamp('bussola-09-celular', 1600, 900, 'Versão para celular da tela Minha jornada'),
+]
+
 // Do mais recente para o mais antigo.
 export const events: PortfolioEvent[] = [
+  {
+    id: 'EVT_006',
+    slug: 'talentcamp-2026',
+    name: 'TalentCamp 2026',
+    category: 'Hackathon',
+    date: '14 NOV 2026',
+    organizer: 'TalentCamp',
+    role: 'AI builder',
+    summary:
+      'Em 8 horas, construí com agentes de IA a Bússola, plataforma de integração de novos funcionários, para o desafio “O primeiro mês de quem chega”. Recebi o certificado de AI builder.',
+    description: [
+      'O TalentCamp é um evento em que os participantes escolhem um desafio real de negócio e constroem uma solução funcional em pouco tempo. Cada desafio tem um responsável que acompanha as equipes.',
+      'Escolhi o desafio “O primeiro mês de quem chega”, trazido por uma empresa de tecnologia de médio porte (fictícia). A empresa cresce rápido e contrata toda semana, mas quem chega leva semanas para descobrir quem faz o quê, quais ferramentas pode usar e onde estão os documentos. A solução precisava servir à pessoa recém-contratada, ao gestor e ao RH, só com dados fictícios, sem criar acessos reais nem integrar com sistemas internos.',
+      'Comecei estudando plataformas de onboarding do mercado, como Enboarder, BambooHR, Gupy e Glean. Elas já têm jornadas, checklists e chatbots, então concentrei a Bússola no que elas não colocam no centro: respostas sempre com fonte, conhecimento que cresce a partir das dúvidas e conteúdo com dono e validade.',
+      'Depois escrevi a especificação do produto e desenvolvi a plataforma com um agente de IA no ambiente do evento. Entre as rodadas, testei cada funcionalidade no computador e no celular, corrigi bugs e ajustes de experiência, e produzi um vídeo de demonstração de 2 minutos para a apresentação.',
+    ],
+    highlights: [
+      'Certificado de AI builder do TalentCamp',
+      'Protótipo funcional em 8 horas, construído com agentes de IA',
+      'Três perfis (pessoa nova, gestor e RH), demonstrável de ponta a ponta',
+      'Vídeo de demonstração de 2 minutos para a apresentação',
+    ],
+    learnings: [
+      'Começar pelo problema real (a mesma pergunta respondida várias vezes) tornou o produto mais fácil de explicar que uma lista de funcionalidades',
+      'Testar como usuário, perfil por perfil, revelou problemas que não apareciam no código',
+      'Próximo passo: uma busca que entenda perguntas escritas com outras palavras; hoje ela compara as palavras da pergunta',
+    ],
+    project: {
+      name: 'Bússola',
+      tagline: 'Seu primeiro mês com direção.',
+      description:
+        'Plataforma de integração de novos funcionários. Com ela, quem chega sabe a quem recorrer, o que pode usar e onde achar o que precisa, e cada dúvida respondida uma vez vira orientação para todos que chegarem depois.',
+      problem:
+        'Cada gestor recebe do seu jeito, o checklist oficial está desatualizado, e as mesmas perguntas são respondidas de novo a cada contratação, por quem estiver por perto. Como deixar quem chega produtivo e seguro nas primeiras semanas?',
+      features: [
+        'Minha jornada: em vez de uma lista enorme, três próximos passos, o progresso, o padrinho e a primeira entrega',
+        'Trilha por etapas: base igual para todos, que o gestor complementa com o que é do time; cada item tem dono e data de revisão, e o conteúdo vencido aparece marcado',
+        'Dúvidas com fonte: cada resposta mostra de onde veio, quando foi revisada e quem pode ajudar; sem resposta, a plataforma não inventa e encaminha a pergunta ao RH',
+        'Fila de lacunas: o RH responde uma única vez, e a resposta passa a valer para todos que perguntarem depois',
+        'Mapa da empresa: pessoas e times por assunto, e ferramentas liberadas, que precisam de pedido (simulado) ou proibidas, com a alternativa aprovada',
+        'Check-in de segurança: notas de 1 a 5 nas semanas 1, 2 e 4; uma nota baixa gera alerta para o gestor',
+        'Painéis do gestor e do RH, com indicadores ligados aos objetivos do desafio e uma tela de revisão das orientações vencidas',
+      ],
+      mvp: 'Protótipo funcional com três perfis (pessoa nova, gestor e RH), publicado e demonstrável de ponta a ponta, só com dados fictícios. Também funciona no celular e tem um modo de apresentação.',
+    },
+    links: [],
+    certificate: {
+      title: 'Certificado de AI builder',
+      issuer: 'TalentCamp',
+      date: '14/11/2026',
+      file: '/events/talentcamp-2026/certificado.jpg',
+    },
+    cover: talentcampPhotos[0]!,
+    photos: talentcampPhotos,
+    projectGallery: { title: 'Fotos da Bússola', photos: bussolaPhotos },
+  },
   {
     id: 'EVT_005',
     slug: 'devfest-pelotas-2026',
@@ -248,7 +384,7 @@ export const events: PortfolioEvent[] = [
       issuer: 'GDG Pelotas',
       date: '07/11/2026',
       hours: '8 horas',
-      pdf: '/events/devfest-pelotas-2026/certificado.pdf',
+      file: '/events/devfest-pelotas-2026/certificado.pdf',
       // Endereço impresso no certificado; a página responde, mas a consulta pelo código não foi testada.
       verify: { href: 'https://certificate.gdgpelotas.com.br/verify', verified: false },
     },

@@ -117,15 +117,17 @@ export interface EventProject {
 
 /** Certificado emitido pela organização. Copie os dados exatamente como estão no documento. */
 export interface EventCertificate {
+  /** Nome do certificado, quando não for o genérico (ex.: "Certificado de AI builder"). */
+  title?: string
   /** Código impresso no certificado (usado na verificação). */
-  code: string
+  code?: string
   issuer: string
-  /** Data impressa no certificado. */
-  date: string
+  /** Data do certificado (ou do evento, se o certificado não traz data). */
+  date?: string
   /** Carga horária impressa no certificado. */
   hours?: string
-  /** PDF em `public/events/<slug>/`. */
-  pdf: string
+  /** Arquivo (PDF ou imagem) em `public/events/<slug>/`. */
+  file: string
   /** Página de verificação indicada no próprio certificado. */
   verify?: { href: string; verified: boolean }
 }
@@ -157,5 +159,8 @@ export interface PortfolioEvent {
   links: { kind: 'linkedin' | 'instagram' | 'site'; label: string; href: string }[]
   certificate?: EventCertificate
   cover: EventPhoto
+  /** Fotos tiradas no evento. */
   photos: EventPhoto[]
+  /** Telas do projeto, exibidas numa galeria própria abaixo das fotos do evento. */
+  projectGallery?: { title: string; photos: EventPhoto[] }
 }

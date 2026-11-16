@@ -87,6 +87,7 @@ test.describe('Home', () => {
         '/projects/game-library',
         '/events/startup-weekend-pelotas-2026',
         '/events/hackathon-atlas-2026',
+        '/events/talentcamp-2026',
         '/events/devfest-pelotas-2026',
         '/events/tecnopuc-experience-2026',
         '/events/hackathon-unisenac-2026',
@@ -169,8 +170,9 @@ test.describe('Eventos', () => {
     const more = page.getByRole('button', { name: /More events/ })
     await expect(more).toHaveAttribute('aria-expanded', 'false')
     await more.click()
-    await expect(cards).toHaveCount(5)
-    await expect(cards.nth(2)).toContainText('DevFest')
+    await expect(cards).toHaveCount(6)
+    await expect(cards.nth(2)).toContainText('TalentCamp')
+    await expect(cards.nth(3)).toContainText('DevFest')
     const less = page.getByRole('button', { name: /Show less/ })
     await expect(less).toHaveAttribute('aria-expanded', 'true')
     await less.click()
@@ -212,6 +214,13 @@ test.describe('Eventos', () => {
     const pdf = await page.request.get('/events/devfest-pelotas-2026/certificado.pdf')
     expect(pdf.ok()).toBe(true)
     expect(pdf.headers()['content-type']).toContain('pdf')
+    await page.goto('/events/talentcamp-2026')
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('TalentCamp 2026')
+    await expect(
+      page.getByRole('link', { name: 'Ver certificado do TalentCamp 2026 (abre em nova aba)' }),
+    ).toHaveAttribute('href', '/events/talentcamp-2026/certificado.jpg')
+    await expect(page.getByRole('heading', { name: /FOTOS DO EVENTO — 4 FOTOS/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Fotos da Bússola — 9/i })).toBeVisible()
     await page.goto('/events/nao-existe')
     await expect(page.getByText(/EVENT_NOT_FOUND/)).toBeVisible()
   })
@@ -294,6 +303,7 @@ test.describe('Acessibilidade', () => {
     '/projects/game-library',
     '/events/startup-weekend-pelotas-2026',
     '/events/hackathon-atlas-2026',
+    '/events/talentcamp-2026',
     '/events/devfest-pelotas-2026',
     '/events/tecnopuc-experience-2026',
     '/events/hackathon-unisenac-2026',
