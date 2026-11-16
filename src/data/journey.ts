@@ -66,6 +66,13 @@ export const journey: JourneyEvent[] = [
     status: 'done',
   },
   {
+    date: '12 DEZ 2026',
+    title: 'Hackapel',
+    description: 'Participação confirmada no Hackapel, em 12 de dezembro de 2026.',
+    category: 'Hackathon',
+    status: 'planned',
+  },
+  {
     date: null,
     title: 'Novos hackathons e competições',
     description: 'Participação planejada em outros eventos de tecnologia.',
