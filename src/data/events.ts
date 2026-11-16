@@ -306,6 +306,7 @@ export const events: PortfolioEvent[] = [
     name: 'TalentCamp 2026',
     category: 'Hackathon',
     date: '14 NOV 2026',
+    location: 'Parque Tecnológico de Pelotas, Pelotas, RS',
     organizer: 'TalentCamp',
     role: 'AI builder',
     summary:
