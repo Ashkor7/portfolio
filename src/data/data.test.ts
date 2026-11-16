@@ -4,11 +4,15 @@ import { filterProjects, getProjectBySlug, parseProjectFilter, projects } from '
 import { journey } from './journey'
 import { person, pendingValidation, socialLinks } from '@/config/site'
 
-// Arquivos em public/, para conferir se as fotos dos eventos existem.
+// Arquivos em public/, para conferir se as fotos e certificados dos eventos existem.
 const publicFiles = new Set(
-  Object.keys(import.meta.glob(['/public/events/**/*.webp', '/public/projects/**/*.webp'])).map(
-    (p) => p.replace(/^\/public/, ''),
-  ),
+  Object.keys(
+    import.meta.glob([
+      '/public/events/**/*.webp',
+      '/public/events/**/*.pdf',
+      '/public/projects/**/*.webp',
+    ]),
+  ).map((p) => p.replace(/^\/public/, '')),
 )
 
 describe('dados dos projetos', () => {
@@ -74,6 +78,10 @@ describe('dados dos projetos', () => {
       for (const l of e.links) {
         if (l.kind === 'linkedin') expect(l.href).toMatch(/linkedin\.com\/(feed\/update|posts)\//)
         if (l.kind === 'instagram') expect(l.href).toMatch(/instagram\.com\/p\//)
+      }
+      if (e.certificate) {
+        expect(e.certificate.pdf.startsWith(`/events/${e.slug}/`)).toBe(true)
+        expect(publicFiles.has(e.certificate.pdf), e.certificate.pdf).toBe(true)
       }
     }
   })

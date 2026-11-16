@@ -115,6 +115,21 @@ export interface EventProject {
   url?: string
 }
 
+/** Certificado emitido pela organização. Copie os dados exatamente como estão no documento. */
+export interface EventCertificate {
+  /** Código impresso no certificado (usado na verificação). */
+  code: string
+  issuer: string
+  /** Data impressa no certificado. */
+  date: string
+  /** Carga horária impressa no certificado. */
+  hours?: string
+  /** PDF em `public/events/<slug>/`. */
+  pdf: string
+  /** Página de verificação indicada no próprio certificado. */
+  verify?: { href: string; verified: boolean }
+}
+
 export interface PortfolioEvent {
   /** Identificador estável exibido no card. */
   id: string
@@ -140,6 +155,7 @@ export interface PortfolioEvent {
   project?: EventProject
   /** Publicações oficiais sobre o evento (posts do LinkedIn/Instagram). */
   links: { kind: 'linkedin' | 'instagram' | 'site'; label: string; href: string }[]
+  certificate?: EventCertificate
   cover: EventPhoto
   photos: EventPhoto[]
 }

@@ -243,6 +243,15 @@ export const events: PortfolioEvent[] = [
       'Multi-agent cloud systems com Gemini',
     ],
     links: [],
+    certificate: {
+      code: 'GDG-PEL-1F4D3Z5W025Q',
+      issuer: 'GDG Pelotas',
+      date: '07/11/2026',
+      hours: '8 horas',
+      pdf: '/events/devfest-pelotas-2026/certificado.pdf',
+      // Endereço impresso no certificado; a página responde, mas a consulta pelo código não foi testada.
+      verify: { href: 'https://certificate.gdgpelotas.com.br/verify', verified: false },
+    },
     cover: devfestPhotos[0]!,
     photos: devfestPhotos,
   },

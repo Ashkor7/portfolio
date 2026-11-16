@@ -1,8 +1,9 @@
 import { Link, useParams } from 'react-router'
-import { ArrowLeft, Check, ExternalLink, Trophy } from 'lucide-react'
+import { ArrowLeft, Check, ExternalLink, FileText, ShieldCheck, Trophy } from 'lucide-react'
 import { EventLinks } from '@/components/events/EventLinks'
 import { PhotoGallery } from '@/components/events/PhotoGallery'
 import { Badge } from '@/components/ui/Badge'
+import { ButtonAnchor } from '@/components/ui/Button'
 import { HudCard } from '@/components/ui/HudCard'
 import { getEventBySlug } from '@/data/events'
 import { person } from '@/config/site'
@@ -232,6 +233,51 @@ export function EventDetailPage() {
                 <EventLinks event={event} />
               </div>
             </section>
+          )}
+
+          {event.certificate && (
+            <HudCard tone="neon" className="mt-10">
+              <h2 className="font-mono text-xs tracking-widest text-neon">
+                {num()} // CERTIFICADO
+              </h2>
+              <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 font-mono text-xs">
+                {(
+                  [
+                    ['Código', event.certificate.code],
+                    ['Emissor', event.certificate.issuer],
+                    ['Data', event.certificate.date],
+                    ['Carga horária', event.certificate.hours],
+                  ] as const
+                )
+                  .filter(([, value]) => value)
+                  .map(([label, value]) => (
+                    <div key={label} className="contents">
+                      <dt className="text-muted-foreground uppercase">{label}</dt>
+                      <dd className="break-all">{value}</dd>
+                    </div>
+                  ))}
+              </dl>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <ButtonAnchor
+                  variant="ghost"
+                  href={event.certificate.pdf}
+                  aria-label={`Ver certificado do ${event.name} em PDF (abre em nova aba)`}
+                >
+                  <FileText className="size-4" aria-hidden="true" />
+                  Ver certificado (PDF)
+                </ButtonAnchor>
+                {event.certificate.verify?.verified && (
+                  <ButtonAnchor
+                    variant="ghost"
+                    href={event.certificate.verify.href}
+                    aria-label={`Verificar autenticidade no site do ${event.certificate.issuer} (abre em nova aba)`}
+                  >
+                    <ShieldCheck className="size-4" aria-hidden="true" />
+                    Verificar autenticidade
+                  </ButtonAnchor>
+                )}
+              </div>
+            </HudCard>
           )}
 
           <section aria-labelledby="event-gallery-title" className="mt-12">
