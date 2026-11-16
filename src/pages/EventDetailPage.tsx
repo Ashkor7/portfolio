@@ -72,6 +72,18 @@ export function EventDetailPage() {
             {event.name}
           </h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">{event.summary}</p>
+          {project?.url && (
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <ButtonAnchor
+                href={project.url}
+                aria-label={`Acessar a plataforma ${project.name} em ${new URL(project.url).hostname} (abre em nova aba)`}
+              >
+                <ExternalLink className="size-4" aria-hidden="true" />
+                Acessar a {project.name}
+              </ButtonAnchor>
+              <span className="font-mono text-xs text-neon">{new URL(project.url).hostname}</span>
+            </div>
+          )}
 
           <figure className="mt-8">
             <img

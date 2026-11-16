@@ -205,6 +205,9 @@ test.describe('Eventos', () => {
   test('acesso direto e slug inexistente', async ({ page }) => {
     await page.goto('/events/startup-weekend-pelotas-2026')
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+    await expect(
+      page.getByRole('link', { name: /Acessar a plataforma Melhor Obra em melhorobras\.com/ }),
+    ).toHaveAttribute('href', 'https://melhorobras.com')
     await page.goto('/events/hackathon-atlas-2026')
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hackathon Atlas 2026')
     await expect(page.getByText('2º lugar', { exact: true }).first()).toBeVisible()

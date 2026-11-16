@@ -461,19 +461,19 @@ export const events: PortfolioEvent[] = [
     description: [
       'Foram 56 horas, de sexta a domingo, para sair de uma ideia e chegar a um negócio validado na frente da banca. Nosso time tinha 6 pessoas, entre desenvolvedores, designers e pessoas de negócios.',
       'Antes de escrever uma linha de código, fomos para a rua: entrevistamos 30 pessoas em Pelotas, e 26 delas já tinham tido problema com um prestador de serviço ou conheciam alguém que teve. Uma delas tinha perdido R$ 8 mil e nos disse: “um contrato teria resolvido”.',
-      'Ainda durante o evento fechamos os 2 primeiros serviços reais, com R$ 1.340 em contratos assinados. O projeto não parou no domingo: a Melhor Obra segue como piloto em Pelotas.',
+      'Ainda durante o evento fechamos os 2 primeiros serviços reais, com R$ 1.340 em contratos assinados. O projeto não parou no domingo: a Melhor Obra segue como piloto aqui em Pelotas, em melhorobras.com.',
     ],
     highlights: [
       '1º lugar no Techstars Startup Weekend Pelotas 2026',
       '30 entrevistas com moradores de Pelotas; 26 já tinham tido problema com um prestador',
       '2 serviços reais fechados durante o evento: R$ 1.340 em contratos assinados',
-      'Projeto segue como piloto em Pelotas',
+      'Projeto segue como piloto em Pelotas, em melhorobras.com',
     ],
     learnings: [
       'Ouvir as dores dos usuários e validar o problema antes de pensar na solução e começar a desenvolver',
       'Trabalhar em equipe sob pressão, com prazo curto e decisões rápidas',
       'Cortar escopo: em 56 horas, o MVP precisa provar a ideia, não ter todas as funcionalidades',
-      'Dev e negócios lado a lado desde o primeiro dia: entender o modelo de negócio ajudou a decidir o que construir',
+      'Dev e negócios lado a lado desde o primeiro dia: entender o modelo de negócio me ajudou a decidir o que construir',
       'Apresentar a ideia com clareza e defendê-la diante de uma banca, em poucos minutos',
     ],
     project: {
